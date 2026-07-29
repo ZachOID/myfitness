@@ -1,0 +1,47 @@
+<section class="blog-area padding-top-40 padding-bottom-40 section-bg-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-7 col-md-10">
+                <div class="section-title">
+                    <h2 class="title"> Recent Blog & Articles </h2>
+                    <span class="section-para">
+                        <p><span style="font-weight: 400;">Fitness in motion</span></p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row margin-top-50">
+            <div class="col-lg-12">
+                <div class="services-slider dot-style-one dot-02 dot-color-02">
+                    @foreach ($blogs as $blog)
+                        <div class="single-blog-item wow fadeInUp" data-wow-delay=".2s">
+                            <div class="single-blog style-02">
+                                <a href="{{ route('front.blogDetails',$blog->slug) }}" class="blog-thumb">
+                                    <img src="{{ asset('storage/'.$blog->image) }}"
+                                        alt="{{ $blog->name }}" width="350"
+                                        height="auto" loading="lazy">
+                                </a>
+                                <div class="blog-contents">
+                                    <ul class="tags hover-color-two">
+                                        <li class="list">
+                                            <a href="javascript:void(0)"> <i class="las la-clock"></i> {{ $blog->created_at->format('d M Y') }}
+                                            </a>
+                                        </li>
+                                        <li class="list">
+                                            <a href="javascript:void(0)"> <i class="las la-tag"></i> {{ $blog->category?->name }} </a>
+                                        </li>
+                                    </ul>
+                                    <h4 class="common-title-two hover-color-two"> <a
+                                            href="{{ route('front.blogDetails',$blog->slug) }}">
+                                            {{ $blog->title }}</a> </h4>
+                                    <p class="common-para">
+                                    <p>{{ $blog->excerpt }}</p>
+                                </div>
+                            </div>
+                        </div>                  
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
