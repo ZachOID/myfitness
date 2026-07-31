@@ -25,6 +25,30 @@
         </a>
     </li>
 
+    <!-- Site Settings & Cult Controls -->
+    <li class="nav-item {{ Route::is('admins.settings.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admins.settings.index') }}">
+            <i class="fas fa-cog text-warning"></i>
+            <span class="font-weight-bold text-warning"> {{ __('Site Settings & Design') }} </span>
+        </a>
+    </li>
+
+    <!-- Testimonials CMS -->
+    <li class="nav-item {{ Route::is('admins.testimonials.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admins.testimonials.index') }}">
+            <i class="fas fa-star text-info"></i>
+            <span> {{ __('Testimonials') }} </span>
+        </a>
+    </li>
+
+    <!-- Discount Leads -->
+    <li class="nav-item {{ Route::is('admins.discount-leads.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admins.discount-leads.index') }}">
+            <i class="fas fa-gift text-success"></i>
+            <span> {{ __('10% Discount Leads') }} </span>
+        </a>
+    </li>
+
     <li class="nav-item {{ Route::is('admins.categories.*') ? 'active' : '' }}"
         style="{{ Route::is('admins.categories.*') ? 'background-color: darkslategrey;' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecategories"

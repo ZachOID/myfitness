@@ -38,8 +38,9 @@ class ServiceController extends Controller
             'name'                      => 'required|string|max:255',
             'description'               => 'nullable|string',
             'category_id'               => 'required|exists:categories,id',
-            'price_after'               => 'required|numeric|min:0|lt:price_before',
-            'price_before'               => 'required|numeric|min:0|gt:price_after',
+            'price_after'               => 'required|numeric|min:0',
+            'price_before'              => 'nullable|numeric|min:0',
+            'badge_text'                => 'nullable|string|max:50',
             'is_featured'               => 'required|boolean',
             'image'                     => 'required|image|max:5120',
             'session_minutes'           => 'required|in:45,60,90',
@@ -48,7 +49,7 @@ class ServiceController extends Controller
         $slug = Str::slug($request->name);
 
         if (Service::where('slug', $slug)->exists()) {
-            return redirect()->back()->withInput()->with('error', 'name already exists');
+            return redirect()->back()->withInput()->with('error', 'Service name already exists');
         }
 
         $image_path = null;
@@ -57,13 +58,18 @@ class ServiceController extends Controller
             $image_path = $image->store('services', 'public');
         }
 
+        $priceBefore = $request->price_before ?: ($request->price_after * 1.4);
+        $discountPct = ($priceBefore > $request->price_after) ? round((($priceBefore - $request->price_after) / $priceBefore) * 100) : 0;
+
         Service::create([
             'name'                              => $request->name,
             'description'                       => $request->description,
             'category_id'                       => $request->category_id,
             'slug'                              => $slug,
             'price_after'                       => $request->price_after,
-            'price_before'                       => $request->price_before,
+            'price_before'                      => $priceBefore,
+            'discount_percentage'               => $discountPct,
+            'badge_text'                        => $request->badge_text,
             'is_featured'                       => $request->is_featured,
             'image'                             => $image_path,
             'session_minutes'                   => $request->session_minutes,
@@ -101,8 +107,9 @@ class ServiceController extends Controller
             'name'                      => 'required|string|max:255',
             'description'               => 'nullable|string',
             'category_id'               => 'required|exists:categories,id',
-            'price_after'               => 'required|numeric|min:0|lt:price_before',
-            'price_before'               => 'required|numeric|min:0|gt:price_after',
+            'price_after'               => 'required|numeric|min:0',
+            'price_before'              => 'nullable|numeric|min:0',
+            'badge_text'                => 'nullable|string|max:50',
             'is_featured'               => 'required|boolean',
             'image'                     => 'nullable|image|max:5120',
             'session_minutes'           => 'required|in:45,60,90',
@@ -111,7 +118,7 @@ class ServiceController extends Controller
         $slug = Str::slug($request->name);
 
         if (Service::where('slug', $slug)->where('id', '<>', $service->id)->exists()) {
-            return redirect()->back()->withInput()->with('error', 'name already exists');
+            return redirect()->back()->withInput()->with('error', 'Service name already exists');
         }
 
         $image_path = $service->image;
@@ -123,13 +130,18 @@ class ServiceController extends Controller
             }
         }
 
+        $priceBefore = $request->price_before ?: ($request->price_after * 1.4);
+        $discountPct = ($priceBefore > $request->price_after) ? round((($priceBefore - $request->price_after) / $priceBefore) * 100) : 0;
+
         $service->update([
             'name'                              => $request->name,
             'description'                       => $request->description,
             'category_id'                       => $request->category_id,
             'slug'                              => $slug,
             'price_after'                       => $request->price_after,
-            'price_before'                       => $request->price_before,
+            'price_before'                      => $priceBefore,
+            'discount_percentage'               => $discountPct,
+            'badge_text'                        => $request->badge_text,
             'is_featured'                       => $request->is_featured,
             'image'                             => $image_path,
             'session_minutes'                   => $request->session_minutes,

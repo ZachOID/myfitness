@@ -1,94 +1,45 @@
-<x-front.main-layout>
+@php
+    $imgUrl = str_starts_with($blog->image, 'http') ? $blog->image : asset('storage/' . $blog->image);
+@endphp
 
-    <div class="banner-inner-area section-bg-2">
+<x-front.main-layout :title="$blog->title . ' | MyFitness Blog'">
+    <section class="padding-top-60 padding-bottom-60" style="background: var(--brand-bg);">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="banner-inner-contents">
-                        <ul class="inner-menu">
-                            <li class="list"><a href="/"> Home </a></li>
-                            <li class="list"><a href="{{ route('front.blogs') }}"> Blog </a></li>
-                            <li class="list"> Blog Details </li>
-                        </ul>
-                        <h1 class="banner-inner-title"> {{ $blog->title }} </h1>
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div style="margin-bottom: 20px;">
+                        <a href="{{ route('front.blogs') }}" style="color: var(--brand-primary); text-decoration: none; font-weight: 700; font-size: 0.9rem;">
+                            <i class="fas fa-arrow-left me-1"></i> BACK TO BLOGS
+                        </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+                    @if($blog->category)
+                        <span class="cult-category-badge mb-3" style="position: static;">{{ $blog->category->name }}</span>
+                    @endif
 
-    <section class="blog-details-area padding-top-100 padding-bottom-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="blog-details-wrapper">
-                        <div class="single-blog-details">
-                            <div class="thumb">
-                                <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }} "
-                                    width="1110" height="">
-                            </div>
-                            <ul class="tags">
-                                <li class="">
-                                    <a href="javascript:void(0)"> <i class="las la-clock"></i>
-                                        {{ $blog->created_at->format('d M Y') }} </a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0)"> <i class="las la-tag"></i>
-                                        {{ $blog->category?->name }} </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="single-blog-details">
-                            {!! $blog->content !!}
-                        </div>
+                    <h1 style="font-size: 2.6rem; font-weight: 900; color: #fff; margin-top: 10px; margin-bottom: 16px; line-height: 1.25;">
+                        {{ $blog->title }}
+                    </h1>
 
-                        <div class="related-blog-area padding-top-100">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="section-title-two">
-                                            <h3 class="title"> Related Blog </h3>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 30px; display: flex; align-items: center; gap: 16px;">
+                        <span><i class="far fa-calendar-alt color-3 me-1"></i> {{ $blog->created_at->format('F d, Y') }}</span>
+                        <span>•</span>
+                        <span><i class="far fa-user color-3 me-1"></i> By MyFitness Experts</span>
+                    </div>
 
-                                <div class="row padding-top-20">
-                                    @foreach ($blogs as $blogi)
-                                        <div class="col-lg-4 col-md-6 margin-top-30">
-                                            <div class="single-blog no-margin wow fadeInUp" data-wow-delay=".2s">
-                                                <a href="{{ route('front.blogDetails',$blogi->slug) }}"
-                                                    class="blog-thumb">
-                                                    <img src="{{ asset('storage/'.$blogi->image) }}"
-                                                        alt="{{ $blogi->title }}">
-                                                </a>
-                                                <div class="blog-contents">
-                                                    <ul class="tags">
-                                                        <li>
-                                                            <a href="javascript:void(0)"> <i class="las la-clock"></i>
-                                                                {{ $blogi->created_at->format('d M Y') }}
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0)"> <i class="las la-tag"></i>
-                                                                {{ $blog->category?->name }}
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <h4 class="common-title-two"> <a
-                                                            href="{{ route('front.blogDetails',$blogi->slug) }}">
-                                                            {{ $blogi->title }} </a> </h4>
-                                                    <p class="common-para">
-                                                    <p>{{ $blogi->excerpt }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
+                    <div style="border-radius: 16px; overflow: hidden; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1);">
+                        <img src="{{ $imgUrl }}" alt="{{ $blog->title }}" style="width: 100%; max-height: 480px; object-fit: cover;" onError="this.src='https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800'">
+                    </div>
 
+                    <div style="background: var(--brand-card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 40px; color: #e2e8f0; font-size: 1.05rem; line-height: 1.8;">
+                        {!! nl2br(e($blog->content)) !!}
+                    </div>
 
+                    <!-- CTA Box -->
+                    <div style="background: linear-gradient(135deg, #141722 0%, #0b0d14 100%); border: 2px solid var(--brand-primary); border-radius: 16px; padding: 30px; margin-top: 40px; text-align: center;">
+                        <h3 style="color: #fff; font-weight: 800; font-size: 1.5rem; margin-bottom: 10px;">READY TO ELEVATE YOUR FITNESS?</h3>
+                        <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto 20px;">Book a certified personal trainer to deliver custom workouts directly to your doorstep.</p>
+                        <a href="{{ route('front.services') }}" class="btn-cult-primary">EXPLORE FITNESS SERVICES</a>
                     </div>
                 </div>
             </div>

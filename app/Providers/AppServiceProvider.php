@@ -26,5 +26,10 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Paginator::useBootstrap();
+
+        // Force HTTPS in production or behind ngrok/localtunnel proxies
+        if (config('app.env') !== 'local' || request()->header('x-forwarded-proto') == 'https' || str_contains(request()->header('host', ''), 'ngrok') || str_contains(request()->header('host', ''), 'loca.lt')) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
     }
 }

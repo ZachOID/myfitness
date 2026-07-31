@@ -1,49 +1,59 @@
-<x-front.main-layout>
-    <div class="overlays"></div>
-    <div class="banner-inner-area section-bg-2">
+<x-front.main-layout title="Fitness & Wellness Blog | MyFitness Dubai">
+    <section class="premium-section" style="padding-top: 120px;">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="banner-inner-contents">
-                        <ul class="inner-menu">
-                            <li class="list"><a href="/"> Home </a></li>
-                            <li class="list"> Blog </li>
-                        </ul>
-                        <h1 class="banner-inner-title"> Fitness Blogs </h1>
-                    </div>
-                </div>
+            <div class="text-center mb-5">
+                <span class="hero-badge mb-2">EXPERT ARTICLES & TIPS</span>
+                <h1 style="font-size: 3.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 16px;">
+                    FITNESS & WORKOUT <span class="text-gradient">BLOG</span>
+                </h1>
+                <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto; font-size: 1.15rem; line-height: 1.6;">
+                    Latest tips on personal training, weight loss, posture correction, yoga benefits, and nutrition in Dubai.
+                </p>
             </div>
-        </div>
-    </div>
-    <section class="blog-area padding-top-70 padding-bottom-100">
-        <div class="container">
-            <div class="row">
-                @foreach ($blogs as $blog)
-                    <div class="col-lg-4 col-md-6 margin-top-30">
-                        <div class="single-blog no-margin wow fadeInUp" data-wow-delay=".2s">
-                            <a href="{{ route('front.blogDetails',$blog->slug) }}" class="blog-thumb">
-                                <img src="{{ asset('storage/'.$blog->image) }}"
-                                    alt=" {{ $blog->title }} " width="350"
-                                    height="233">
-                            </a>
-                            <div class="blog-contents">
-                                <ul class="tags">
-                                    <li>
-                                        <a href="javascript:void(0)"> <i class="las la-clock"></i> {{ $blog->created_at->format('d M Y') }} </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)"> <i class="las la-tag"></i> {{ $blog->category?->name }} </a>
-                                    </li>
-                                </ul>
-                                <h4 class="common-title-two"> <a
-                                        href="{{ route('front.blogDetails',$blog->slug) }}"> {{ $blog->title }} </a> </h4>
-                                <p class="common-para">
-                                <p>{{ $blog->excerpt }}</p>
+
+            <div class="row g-4">
+                @forelse($blogs as $blog)
+                    @php
+                        $imgUrl = str_starts_with($blog->image, 'http') ? $blog->image : asset('storage/' . $blog->image);
+                    @endphp
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="premium-service-card">
+                            <div class="service-img-wrapper">
+                                <img src="{{ $imgUrl }}" alt="{{ $blog->title }}" loading="lazy" onError="this.src='https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600'">
+                                @if($blog->category)
+                                    <span class="category-badge">{{ $blog->category->name }}</span>
+                                @endif
+                            </div>
+
+                            <div class="service-body">
+                                <span style="color: var(--color-primary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; display: block;">
+                                    <i class="far fa-calendar-alt me-1"></i> {{ $blog->created_at->format('M d, Y') }}
+                                </span>
+
+                                <h3 class="service-title">
+                                    <a href="{{ route('front.blogDetails', $blog->slug) }}">
+                                        {{ $blog->title }}
+                                    </a>
+                                </h3>
+
+                                <p class="service-desc" style="margin-bottom: 24px;">
+                                    {{ Str::limit(strip_tags($blog->excerpt ?: $blog->content), 100) }}
+                                </p>
+
+                                <a href="{{ route('front.blogDetails', $blog->slug) }}" class="btn-premium btn-outline w-100 mt-auto" style="text-align: center;">
+                                    READ ARTICLE <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-12 text-center py-5">
+                        <h3 style="font-weight: 800;">No blog articles published yet.</h3>
+                    </div>
+                @endforelse
+            </div>
 
+            <div class="d-flex justify-content-center mt-5">
                 {{ $blogs->links() }}
             </div>
         </div>

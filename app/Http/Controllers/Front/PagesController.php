@@ -14,8 +14,12 @@ class PagesController extends Controller
     public function home()
     {
         $services = Service::where('is_featured', 1)->latest()->take(8)->get();
+        if ($services->isEmpty()) {
+            $services = Service::latest()->take(8)->get();
+        }
         $blogs = Blog::with(['category'])->latest()->take(10)->get();
-        return view('front.home', compact('services','blogs'));
+        $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('sort_order', 'asc')->get();
+        return view('front.home', compact('services','blogs','testimonials'));
     }
 
     public function about()

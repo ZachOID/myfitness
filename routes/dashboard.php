@@ -5,17 +5,16 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DiscountLeadController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\SiteSettingController;
+use App\Http\Controllers\Dashboard\TestimonialController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 # ---------- Admin ----------
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('admin', [DashboardController::class, 'index'])->name('admin.dashboard');
-//     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-// });
 Route::group([
     'as'            => 'admins.',
     'prefix'        => 'admin/',
@@ -29,6 +28,17 @@ Route::group([
     //--------------------------------------------------------------------------
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Site Settings (Brand, colors, video, ticker, popup, section switches)
+    Route::get('settings', [SiteSettingController::class, 'index'])->name('settings.index');
+    Route::post('settings', [SiteSettingController::class, 'update'])->name('settings.update');
+
+    // Testimonial CMS
+    Route::resource('testimonials', TestimonialController::class)->except(['show']);
+
+    // Discount Popup Lead Emails
+    Route::get('discount-leads', [DiscountLeadController::class, 'index'])->name('discount-leads.index');
+    Route::delete('discount-leads/{lead}', [DiscountLeadController::class, 'destroy'])->name('discount-leads.destroy');
 
     Route::resource('categories', CategoryController::class);
     Route::resource('services', ServiceController::class);

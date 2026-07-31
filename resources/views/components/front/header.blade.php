@@ -1,111 +1,82 @@
-    <header class="header-style-01">
-        <nav class="navbar navbar-area color-two navbar-two navbar-expand-lg nav-absolute">
-            <div class="container container-two nav-container">
-                <div class="responsive-mobile-menu">
-                    <div class="logo-wrapper">
-                        <a href="{{ env('APP_URL') }}" class="logo">
-                            <img src="{{ config('app.logo') }}" alt="{{ env('APP_NAME') }}" width="" height="auto">
-                        </a>
-                    </div>
-                    <a href="#" class="click_show_icon" style="color:#ffffff;">
-                        <i class="las la-ellipsis-v"></i>
-                    </a>
-                    <button class="navbar-toggler white-color" type="button" data-toggle="collapse"
-                        data-target="#bizcoxx_main_menu" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
-                    <ul class="navbar-nav white">
-                        <li class="active">
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('front.about') }}">About</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('front.services') }}">Services</a>
-                        </li>
+<header class="premium-header glass-panel" style="backdrop-filter: blur(20px);">
+    <div class="container d-flex align-items-center justify-content-between py-3">
+        <!-- Logo / Brand Name -->
+        <a href="/" class="d-flex align-items-center text-decoration-none">
+            @if(config('app.logo'))
+                <img src="{{ asset(config('app.logo')) }}" alt="MyFitness Logo" style="height: 55px; width: auto; object-fit: contain;">
+            @endif
+        </a>
 
-                        <li>
-                            <a href="{{ route('front.blogs') }}">Blog</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('front.contact') }}">contact</a>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="nav-right-content">
-                    <a href="{{ route('front.contact') }}" class="menu-btn">
-                        Become a Partner
-                    </a>
-                    @guest
-                        <a href="{{ route('front.login') }}" class="menu-btn">
-                            <i class="fa fa-user" aria-hidden="true"></i> Login/Register
-                        </a>
-                    @endguest
-                    @auth
-                        @if (auth()->user()->role == 'admin')
-                            <a href="{{ route('admins.dashboard') }}" class="menu-btn">
-                                <i class="fa fa-user" aria-hidden="true"></i>Admin Dashboard
-                            </a>
-                        @else
-                            <a href="{{ route('front.dashboard') }}" class="menu-btn">
-                                <i class="fa fa-user" aria-hidden="true"></i> Dashboard
-                            </a>
-                        @endif
-                    @endauth
-                </div>
-            </div>
+        <!-- Desktop Navigation -->
+        <nav class="d-none d-lg-flex align-items-center gap-2 gap-xl-4" style="margin-right: auto; margin-left: 40px;">
+            <a href="/" class="nav-link {{ Route::is('front.home') ? 'active' : '' }}">Home</a>
+            <a href="{{ route('front.services') }}" class="nav-link {{ Route::is('front.services*') ? 'active' : '' }}">Services</a>
+            <a href="{{ route('front.about') }}" class="nav-link {{ Route::is('front.about') ? 'active' : '' }}">About</a>
+            <a href="{{ route('front.blogs') }}" class="nav-link {{ Route::is('front.blogs*') ? 'active' : '' }}">Blogs</a>
+            <a href="{{ route('front.contact') }}" class="nav-link {{ Route::is('front.contact') ? 'active' : '' }}">Contact</a>
         </nav>
 
-    </header>
-    <div class="overlays"></div>
-    <style>
-        .banner-contents.style-02 .banner-bottom-content .banner-search-form .banner-address-select .nice-select .list .focus.disabled {
-            display: none !important;
-        }
+        <!-- Right Side Action Buttons & Mobile Menu Toggle -->
+        <div class="d-flex align-items-center gap-4">
+            <div class="d-none d-lg-flex align-items-center gap-4">
+                <a href="{{ route('front.contact') }}" class="nav-link" style="font-weight: 600; font-size: 0.95rem; text-transform: uppercase;">Become a Partner</a>
+                
+                @guest
+                    <a href="{{ route('front.login') }}" style="color: var(--color-text); font-weight: 600; text-decoration: none; font-size: 0.95rem; text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
+                        <i class="far fa-user"></i> LOGIN
+                    </a>
+                @else
+                    <a href="{{ route('front.dashboard') }}" style="color: var(--color-text); font-weight: 600; text-decoration: none; font-size: 0.95rem; text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
+                        <i class="fas fa-user-circle"></i> DASHBOARD
+                    </a>
+                @endguest
 
-        .banner-area.home-two-banner {
-            background-image: url("{{ asset('images/79820_home-page-d-jpg.webp') }}");
-        }
+                <a href="{{ route('front.services') }}" class="btn-premium btn-accent" style="padding: 12px 28px; font-size: 0.9rem;">
+                    BOOK NOW
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="d-lg-none btn p-0 text-white" id="mobileMenuToggle" style="border: none; background: transparent; font-size: 1.5rem;" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
 
-        @media screen and (max-width: 480px) {
-            .banner-area.home-two-banner {
-                background-image: url('admin/upload/thumb/14166_home-page-m-jpg.webp');
-            }
-        }
-    </style>
-    <style>
-        .social-btn {
-            display: table-cell;
-            padding: 15px 10px 15px 0;
-        }
+<!-- Mobile Navigation Menu -->
+<div id="mobileNavMenu" class="mobile-nav-overlay d-lg-none">
+    <a href="/" class="nav-link {{ Route::is('front.home') ? 'text-gradient' : '' }}">Home</a>
+    <a href="{{ route('front.services') }}" class="nav-link {{ Route::is('front.services*') ? 'text-gradient' : '' }}">Services</a>
+    <a href="{{ route('front.about') }}" class="nav-link {{ Route::is('front.about') ? 'text-gradient' : '' }}">About</a>
+    <a href="{{ route('front.blogs') }}" class="nav-link {{ Route::is('front.blogs*') ? 'text-gradient' : '' }}">Blogs</a>
+    <a href="{{ route('front.contact') }}" class="nav-link {{ Route::is('front.contact') ? 'text-gradient' : '' }}">Contact</a>
+    <a href="{{ route('front.contact') }}" class="nav-link">Become a Partner</a>
+    <hr style="border-color: var(--color-border); margin: 20px 0;">
+    
+    @guest
+        <a href="{{ route('front.login') }}" style="color: var(--color-text); font-weight: 700; text-decoration: none; font-size: 1.2rem; margin-bottom: 20px;"><i class="far fa-user me-2"></i>LOGIN</a>
+    @else
+        <a href="{{ route('front.dashboard') }}" style="color: var(--color-text); font-weight: 700; text-decoration: none; font-size: 1.2rem; margin-bottom: 20px;"><i class="fas fa-user-circle me-2"></i>DASHBOARD</a>
+    @endguest
 
-        a.social-login {
-            all: unset;
-            cursor: pointer;
-            padding: 0px;
-            display: flex;
-            width: 100px;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            background-color: transparent;
-            border: 0;
-            border-radius: 0px;
-            color: #333333;
-        }
+    <a href="{{ route('front.services') }}" class="btn-premium btn-accent text-center mt-2">BOOK NOW</a>
+</div>
 
-        a.social-login:hover {
-            background-color:
-                #ffffff;
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileNavMenu');
+        
+        if(toggleBtn && mobileMenu) {
+            toggleBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                if (mobileMenu.classList.contains('active')) {
+                    toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
         }
-
-        .social-btn img {
-            width: 30px;
-            margin-right: 5px;
-
-        }
-    </style>
+    });
+</script>

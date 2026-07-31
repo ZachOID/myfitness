@@ -1,112 +1,78 @@
-<div class="faq-area padding-top-70 padding-bottom-100">
+<section class="padding-top-60 padding-bottom-60" style="background: var(--brand-bg);">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-6 col-lg-7 col-md-10">
-                <div class="section-title">
-                    <h2 class="title"> Frequently Asked Questions </h2>
-                    <span class="section-para">
-                        <p>We happily answer your questions.</p>
-                    </span>
+        <div class="text-center mb-5">
+            <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--brand-text); margin-bottom: 16px;">FREQUENTLY ASKED QUESTIONS</h2>
+            <p style="color: var(--brand-text-muted); max-width: 600px; margin: 0 auto;">
+                Find quick answers to common questions about our doorstep personal training and wellness services.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Left Column FAQs -->
+            <div class="col-lg-6">
+                <div class="cult-faq-card">
+                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>How do doorstep fitness sessions work?</span>
+                        <i class="fas fa-chevron-down cult-faq-icon"></i>
+                    </div>
+                    <div class="cult-faq-body">
+                        Our certified trainers come directly to your preferred location in Dubai—whether it's your home, building gym, office, or a local park. We bring all the necessary equipment for your session.
+                    </div>
+                </div>
+
+                <div class="cult-faq-card">
+                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>Are the trainers certified?</span>
+                        <i class="fas fa-chevron-down cult-faq-icon"></i>
+                    </div>
+                    <div class="cult-faq-body">
+                        Yes, 100% of our trainers are internationally certified master trainers with specialized qualifications in their respective fields (PT, Yoga, Swimming, etc.) and hold valid UAE REPs registration.
+                    </div>
+                </div>
+
+                <div class="cult-faq-card">
+                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>Do I need my own equipment?</span>
+                        <i class="fas fa-chevron-down cult-faq-icon"></i>
+                    </div>
+                    <div class="cult-faq-body">
+                        No equipment is needed! Our trainers will bring everything required for a highly effective workout based on your specific goals and program.
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row margin-top-50">
-            <div class="col-lg-12">
-                <div class="faq-contents">
-                    <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-                        <div class="faq-title">
-                            Why choose My Fitness?</div>
-                        <div class="faq-panel">
-                            <p class="faq-para">
-                            <p>At My Fitness, we believe that fitness should be accessible to everyone. That's why we
-                                offer a range of products and services designed to fit any budget and lifestyle. Our
-                                team of friendly and knowledgeable experts is here to support you every step of the
-                                way, whether you're looking to lose weight, build muscle, or just feel better in
-                                your own skin.</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-                        <div class="faq-title">
-                            Where can I train?</div>
-                        <div class="faq-panel">
-                            <p class="faq-para">
-                            <p>At My Fitness, you can select the place of training according to your own requirements
-                                and
-                                convenience, whether it's at your home, at the fitness center, or online.</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-                        <div class="faq-title">
-                            What are the prices?</div>
-                        <div class="faq-panel">
-                            <p class="faq-para">
-                            <p>The prices depend on the service you choose, and they vary according to the place you
-                                choose to train in. You can visit our services page to see the prices for our
-                                services.</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-                        <div class="faq-title">
-                            How can I know my trainers details?</div>
-                        <div class="faq-panel">
-                            <p class="faq-para">
-                            <p>We will assign you a highly rated and best available trainer who will help you with
-                                your fitness needs. Once you get comfortable with the trainer, you can book the same
-                                trainer subject to availability.</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-                        <div class="faq-title">
-                            Do I need a gym or any studio membership?</div>
-                        <div class="faq-panel">
-                            <p class="faq-para">
-                            <p>No, you don&rsquo;t need a gym or studio membership.<br data-start="194"
-                                    data-end="197" />My Fitness brings the workout, yoga, massage session, or any of our
-                                services directly to you&mdash;whether it's at your home, office, or a preferred
-                                location. All our services are designed to be done without the need for any external
-                                memberships. Our professionals come fully equipped with everything needed for your
-                                session.</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-                        <div class="faq-title">
-                            What should I prepare for my personal training?</div>
-                        <div class="faq-panel">
-                            <p class="faq-para">
-                            <p>Make sure you have scheduled your time properly so that you are on time and can enjoy
-                                the full session. Wear comfortable clothes, bring a bottle of water, an exercise
-                                mat, and definitely a smile.</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-                        <div class="faq-title">
-                            How can I book the same trainer again?</div>
-                        <div class="faq-panel">
-                            <p class="faq-para">
-                            <p>You can reach out to us via WhatsApp or email with the trainer's full name. We will
-                                get back to you with the trainer's available schedule.</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-                        <div class="faq-title">
-                            Do I need any special equipment?</div>
-                        <div class="faq-panel">
-                            <p class="faq-para">
-                            <p>No, you don't need any special equipment. Just bring your comfortable sports clothes,
-                                a bottle of water, an exercise mat, and a smile.</p>
-                            </p>
-                        </div>
-                    </div>
 
+            <!-- Right Column FAQs -->
+            <div class="col-lg-6">
+                <div class="cult-faq-card">
+                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>How do I get my 10% discount?</span>
+                        <i class="fas fa-chevron-down cult-faq-icon"></i>
+                    </div>
+                    <div class="cult-faq-body">
+                        Simply enter your email address in the welcome pop-up when you first visit the site, and we will email you a unique promo code for 10% off your very first session booking.
+                    </div>
+                </div>
+
+                <div class="cult-faq-card">
+                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>Can I reschedule or cancel a session?</span>
+                        <i class="fas fa-chevron-down cult-faq-icon"></i>
+                    </div>
+                    <div class="cult-faq-body">
+                        Yes, you can easily reschedule or cancel your session through your dashboard up to 12 hours before the scheduled start time without any penalty.
+                    </div>
+                </div>
+
+                <div class="cult-faq-card">
+                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>Do you offer package discounts?</span>
+                        <i class="fas fa-chevron-down cult-faq-icon"></i>
+                    </div>
+                    <div class="cult-faq-body">
+                        Yes! We offer substantial discounts when you book a package. You can save 10% on a 5-session package, 20% on 10 sessions, and up to 30% on our 20-session ultimate package.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

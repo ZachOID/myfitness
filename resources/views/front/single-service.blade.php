@@ -1,162 +1,142 @@
-<x-front.main-layout>
+@php
+    $priceBefore = $service->price_before > $service->price_after ? $service->price_before : ($service->price_after * 1.4);
+    $discountPct = $service->discount_percentage ?? ($priceBefore > 0 ? round((($priceBefore - $service->price_after) / $priceBefore) * 100) : 0);
+    $imgUrl = str_starts_with($service->image, 'http') ? $service->image : asset('storage/' . $service->image);
+@endphp
 
-    <div class="overlays"></div>
-    <style>
-        button:disabled,
-        button[disabled] {
-            border: 1px solid #999999;
-            background-color: #cccccc;
-            color: #666666;
-        }
-
-        .xdsoft_datetimepicker .xdsoft_timepicker {
-            width: 250px;
-            float: left;
-            text-align: center;
-            margin-left: 8px;
-            margin-top: 0;
-        }
-    </style>
-
-    <section class="service-details-area padding-top-20 padding-bottom-40">
+<x-front.main-layout :title="$service->name . ' | MyFitness Dubai'">
+    <section class="padding-top-60 padding-bottom-60" style="background: var(--brand-bg);">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 margin-bottom-20">
-                    <div class="banner-inner-contents margin-bottom-20">
-                        <ul class="inner-menu">
-                            <li class="list"><a href="/"> Home </a></li>
-                            <li class="list"> <a href="{{ route('front.services') }}"> Service Listing </a> </li>
-                            <li class="list"> {{ $service->name }} </li>
-                        </ul>
-                        <h1 class="banner-inner-title"> {{ $service->name }} </h1>
+            <div class="row g-5">
+                <!-- Left: Service Details -->
+                <div class="col-lg-7">
+                    <div class="mb-3">
+                        <a href="{{ route('front.services') }}" style="color: var(--brand-primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
+                            <i class="fas fa-arrow-left me-1"></i> BACK TO SERVICES
+                        </a>
                     </div>
-                    <div class="service-details-wrapper">
-                        <div class="service-details-inner">
-                            <div class="details-thumb">
-                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }} "
-                                    width="730" height="auto">
-                            </div>
-                        </div>
+
+                    <h1 style="font-size: 2.5rem; font-weight: 800; color: var(--brand-text); margin-bottom: 16px; line-height: 1.25;">
+                        {{ $service->name }}
+                    </h1>
+
+                    <div class="d-flex align-items-center flex-wrap gap-3 mb-4">
+                        @if($service->category)
+                            <span class="cult-category-badge" style="position: static; font-size: 0.85rem; padding: 6px 14px;">{{ $service->category->name }}</span>
+                        @endif
+                        @if($discountPct > 0)
+                            <span class="cult-discount-badge" style="position: static; font-size: 0.85rem; padding: 6px 14px;">-{{ $discountPct }}% OFF</span>
+                        @endif
+                        <span style="color: var(--brand-text-muted); font-size: 0.95rem; font-weight: 500;">
+                            <i class="far fa-clock me-1" style="color: var(--brand-primary);"></i> {{ $service->session_minutes }} Minutes
+                        </span>
                     </div>
-                </div>
-                <div class="col-lg-4" style="z-index:9;">
-                    <form action="{{ route('front.order.create', $service->slug) }}" method="post">
-                        @csrf
-                        <div class="service-details-package margin-top-30">
-                            <div class="single-packages">
-                                <li id="mprice">
-                                    <span class="offer">AED {{ $service->price_before }}</span>
-                                </li>
-                                <ul class="package-price" id="packg">
-                                    <li id="sprice">AED&nbsp;{{ $service->price_after }}</li>
-                                </ul>
-                                <div class="Info-overview margin-top-20" style="display: table; width: 100%;"
-                                    id="pack">
-                                    <select name="sessions_number" id="package" required>
-                                        <option value="" disabled >Select Package</option>
-                                        <option value="1">1 Session</option>
-                                        <option value="5">5 sessions</option>
-                                        <option value="10">10 sessions</option>
-                                        <option value="20">20 Sessions</option>
-                                    </select>
-                                </div>
 
-                                <div class="Info-overview margin-top-20" style="display: table; width: 100%;"
-                                    id="pack">
-                                    <select name="is_online" id="type" required>
-                                        <option value="" disabled selected>Select Type</option>
-                                        <option value="1">Online</option>
-                                        <option value="0">Offline</option>
-                                    </select>
-                                </div>
+                    <div style="border-radius: 16px; overflow: hidden; margin-bottom: 30px; border: 1px solid var(--brand-card-border); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                        <img src="{{ $imgUrl }}" alt="{{ $service->name }}" style="width: 100%; height: 400px; object-fit: cover;" onError="this.src='https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800'">
+                    </div>
 
-                                <div class="Info-overview margin-top-20" style="display: none; width: 100%;"
-                                    id="area">
-                                    <select name="area_id" id="sublocation">
-                                        <option value="" disabled>Select Area</option>
-                                        @foreach ($service->areas as $area)
-                                            <option value="{{ $area->id }}">{{ $area->name }}</option>
-                                        @endforeach
-                                    </select>
-
-                                </div>
-
-                                <div class="Info-overview margin-top-10" style="display: table; width: 100%;"
-                                    id="calendar">
-                                    <div class="single-info-input">
-                                        <label class="info-title"> Select your prefered date </label>
-                                        <input type="text" required autocomplete="off" name="dtime"
-                                            class="datetimepicker form-control" id="dtime" value="">
-                                    </div>
-                                </div>
-                                <button type="submit" id="book" class="margin-top-20"> Book Appoinment
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 margin-bottom-20">
-                    <div class="service-details-wrapper">
-                        <div class="service-details-inner">
-                            <div class="details-tabs tabs margin-top-20">
-                                <h5 data-tab="tab1" class="list active">
-                                    Overview
-                                </h5>
-                            </div>
-                            <div class="tab-content-item active" id="tab1">
-                                <div class="details-content-tab padding-top-10">
-                                    {!! $service->description !!}
-                                </div>
-                            </div>
-                        </div>
+                    <div style="background: var(--brand-card-bg); border: 1px solid var(--brand-card-border); border-radius: 16px; padding: 36px; color: var(--brand-text-muted); line-height: 1.8; font-size: 1.05rem;">
+                        <h3 style="color: var(--brand-text); font-weight: 700; font-size: 1.4rem; margin-bottom: 20px;">Program Overview & What's Included</h3>
+                        {!! nl2br(e($service->description)) !!}
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="another-details-wrapper padding-top-40">
+
+                <!-- Right: Interactive Booking Widget -->
+                <div class="col-lg-5">
+                    <div style="background: var(--brand-card-bg); border: 1px solid var(--brand-primary); border-radius: 16px; padding: 36px; position: sticky; top: 120px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                        
+                        <div class="text-center pb-4 mb-4" style="border-bottom: 1px solid var(--brand-card-border);">
+                            <span style="color: var(--brand-text-muted); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">SPECIAL PRICE PER SESSION</span>
+                            <div class="d-flex align-items-baseline justify-content-center gap-3 mt-2">
+                                <span style="font-size: 2.5rem; font-weight: 800; color: var(--brand-primary);" id="displayPriceAfter">AED {{ number_format($service->price_after, 0) }}</span>
+                                <span style="font-size: 1.25rem; color: #64748b; text-decoration: line-through; font-weight: 600;" id="displayPriceBefore">AED {{ number_format($priceBefore, 0) }}</span>
+                            </div>
+                        </div>
+
+                        <form action="{{ route('front.order.create', $service->slug) }}" method="POST">
+                            @csrf
+
+                            <div class="mb-4">
+                                <label class="form-label" style="color: var(--brand-text); font-weight: 600; font-size: 0.95rem;">1. Select Session Package</label>
+                                <select name="sessions_number" id="packageSelect" class="form-select" required style="background: var(--brand-bg); border: 1px solid var(--brand-card-border); color: var(--brand-text); height: 52px; border-radius: 8px;">
+                                    <option value="1" selected>1 Single Session</option>
+                                    <option value="5">5 Sessions Package (Save 10%)</option>
+                                    <option value="10">10 Sessions Transformation (Save 20%)</option>
+                                    <option value="20">20 Sessions Ultimate (Save 30%)</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label" style="color: var(--brand-text); font-weight: 600; font-size: 0.95rem;">2. Training Mode</label>
+                                <select name="is_online" id="trainingMode" class="form-select" required style="background: var(--brand-bg); border: 1px solid var(--brand-card-border); color: var(--brand-text); height: 52px; border-radius: 8px;">
+                                    <option value="0" selected>Offline / In-Person (At Your Home, Gym, Pool)</option>
+                                    <option value="1">Online Video Coaching</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4" id="areaSelectContainer">
+                                <label class="form-label" style="color: var(--brand-text); font-weight: 600; font-size: 0.95rem;">3. Select Area in UAE</label>
+                                <select name="area_id" id="areaSelect" class="form-select" style="background: var(--brand-bg); border: 1px solid var(--brand-card-border); color: var(--brand-text); height: 52px; border-radius: 8px;">
+                                    @foreach($service->areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="form-label" style="color: var(--brand-text); font-weight: 600; font-size: 0.95rem;">4. Preferred Date & Time</label>
+                                <input type="text" name="dtime" id="datetimePicker" class="form-control" required placeholder="Select date and time slot..." style="background: var(--brand-bg); border: 1px solid var(--brand-card-border); color: var(--brand-text); height: 52px; border-radius: 8px;">
+                            </div>
+
+                            <button type="submit" class="btn-cult-primary w-100" style="height: 56px; font-size: 1.1rem !important;">
+                                PROCEED TO BOOKING <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Flatpickr Date Time Picker -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
     <script>
-        flatpickr("#dtime", {
-            enableTime: true,
-            minDate: "today",
-            dateFormat: "Y-m-d H:i",
-            minTime: "08:00",
-            maxTime: "21:00"
-        });
-
-        $(document).ready(function() {
-            // Handle package price updates
-            $('#package').on('change', function() {
-                let sessions = $(this).val() || 1;
-                let priceAfter = sessions * {{ $service->price_after }};
-                let priceBefore = sessions * {{ $service->price_before }};
-
-                $('#sprice').text("AED " + priceAfter);
-                $('#mprice').text("AED " + priceBefore);
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datetimePicker", {
+                enableTime: true,
+                minDate: "today",
+                dateFormat: "Y-m-d H:i",
+                minTime: "07:00",
+                maxTime: "22:00"
             });
 
-            // Handle online/offline type selection
-            $('#type').on('change', function() {
-                if ($(this).val() == '1') { // Online
-                    $('#area').hide();
-                } else if ($(this).val() == '0') { // Offline
-                    $('#area').show();
+            const basePriceAfter = {{ $service->price_after }};
+            const basePriceBefore = {{ $priceBefore }};
+
+            const packageSelect = document.getElementById('packageSelect');
+            const displayAfter = document.getElementById('displayPriceAfter');
+            const displayBefore = document.getElementById('displayPriceBefore');
+            const trainingMode = document.getElementById('trainingMode');
+            const areaContainer = document.getElementById('areaSelectContainer');
+
+            packageSelect.addEventListener('change', function() {
+                const count = parseInt(this.value) || 1;
+                const totalAfter = basePriceAfter * count;
+                const totalBefore = basePriceBefore * count;
+
+                displayAfter.innerText = 'AED ' + totalAfter.toLocaleString();
+                displayBefore.innerText = 'AED ' + totalBefore.toLocaleString();
+            });
+
+            trainingMode.addEventListener('change', function() {
+                if (this.value === '1') {
+                    areaContainer.style.display = 'none';
+                } else {
+                    areaContainer.style.display = 'block';
                 }
             });
         });
     </script>
-
-
-
 </x-front.main-layout>

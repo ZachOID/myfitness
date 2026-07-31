@@ -1,195 +1,130 @@
-<x-front.main-layout>
-    <div class="overlays"></div>
-    <style>
-        .glyphicon-remove {
-            color: #000000;
-        }
+<x-front.main-layout title="Register | MyFitness Dubai">
+    <section class="premium-section" style="padding-top: 140px; min-height: 100vh; display: flex; align-items: center; position: relative;">
+        <!-- Background Elements -->
+        <div style="position: absolute; top: -20%; right: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%); z-index: 0; pointer-events: none;"></div>
+        <div style="position: absolute; bottom: -20%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%); z-index: 0; pointer-events: none;"></div>
 
-        .glyphicon-ok {
-            color: #1dbf73;
-        }
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="text-center mb-5">
+                        <span class="hero-badge mb-2">JOIN THE REVOLUTION</span>
+                        <h1 style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase;">
+                            CREATE AN <span class="text-gradient">ACCOUNT</span>
+                        </h1>
+                    </div>
 
-        .glyphicon-remove:before {
-            content: "\f057";
-            font-family: 'Line Awesome Free';
-            margin-right: 5px;
-            font-size: 16px;
-        }
+                    <div class="glass-panel" style="border-radius: 24px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                        <form action="{{ route('register') }}" method="POST" id="register" onsubmit="if (typeof CheckPassword !== 'undefined') { return CheckPassword(this); } return true;">
+                            @csrf
+                            
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">First Name</label>
+                                    <input class="form-control @error('first_name') is-invalid @enderror" type="text" pattern="[A-Za-z]{2,}" title="Letters only" name="first_name" required placeholder="John" value="{{ old('first_name') }}" style="background: rgba(9,9,11,0.6); border: 1px solid var(--color-border); color: var(--color-text); height: 56px; border-radius: 12px; padding: 0 20px; font-size: 1rem;">
+                                    @error('first_name')
+                                        <span style="color: #fca5a5; font-size: 0.85rem; margin-top: 6px; display: block;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Last Name</label>
+                                    <input class="form-control @error('last_name') is-invalid @enderror" type="text" name="last_name" pattern="[A-Z a-z]{2,}" title="Letters only" required placeholder="Doe" value="{{ old('last_name') }}" style="background: rgba(9,9,11,0.6); border: 1px solid var(--color-border); color: var(--color-text); height: 56px; border-radius: 12px; padding: 0 20px; font-size: 1rem;">
+                                    @error('last_name')
+                                        <span style="color: #fca5a5; font-size: 0.85rem; margin-top: 6px; display: block;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
-        .glyphicon-ok:before {
-            content: "\f058";
-            font-family: 'Line Awesome Free';
-            margin-right: 5px;
-            font-size: 16px;
-        }
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Email Address</label>
+                                    <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" required placeholder="name@example.com" value="{{ old('email') }}" style="background: rgba(9,9,11,0.6); border: 1px solid var(--color-border); color: var(--color-text); height: 56px; border-radius: 12px; padding: 0 20px; font-size: 1rem;">
+                                    @error('email')
+                                        <span style="color: #fca5a5; font-size: 0.85rem; margin-top: 6px; display: block;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Mobile Number</label>
+                                    <div class="d-flex align-items-center">
+                                        <input class="form-control" type="text" value="+971" disabled style="background: rgba(9,9,11,0.8); border: 1px solid var(--color-border); color: var(--color-text-muted); height: 56px; border-radius: 12px 0 0 12px; padding: 0 15px; font-size: 1rem; width: 70px; border-right: none; text-align: center;">
+                                        <input class="form-control @error('phone') is-invalid @enderror" type="tel" name="phone" pattern="5[0-9]{8}" maxlength="9" required placeholder="5X XXX XXXX" title="Please enter 9 digit number starting with 5" value="{{ old('phone') }}" style="background: rgba(9,9,11,0.6); border: 1px solid var(--color-border); color: var(--color-text); height: 56px; border-radius: 0 12px 12px 0; padding: 0 20px; font-size: 1rem; flex: 1;">
+                                    </div>
+                                    @error('phone')
+                                        <span style="color: #fca5a5; font-size: 0.85rem; margin-top: 6px; display: block;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
-        .box-password {
-            position: relative;
-        }
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6" style="position: relative;">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Password</label>
+                                    <input id="pass" class="form-control @error('password') is-invalid @enderror" type="password" required name="password" placeholder="Create a password" style="background: rgba(9,9,11,0.6); border: 1px solid var(--color-border); color: var(--color-text); height: 56px; border-radius: 12px; padding: 0 20px; font-size: 1rem; padding-right: 50px;">
+                                    <button type="button" class="toggle-pass" data-target="pass" style="position: absolute; right: 16px; top: 40px; background: none; border: none; color: var(--color-text-muted); cursor: pointer;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    @error('password')
+                                        <span style="color: #fca5a5; font-size: 0.85rem; margin-top: 6px; display: block;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6" style="position: relative;">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Confirm Password</label>
+                                    <input id="cnfpass" class="form-control @error('cnf_password') is-invalid @enderror" type="password" required name="cnf_password" placeholder="Confirm your password" style="background: rgba(9,9,11,0.6); border: 1px solid var(--color-border); color: var(--color-text); height: 56px; border-radius: 12px; padding: 0 20px; font-size: 1rem; padding-right: 50px;">
+                                    <button type="button" class="toggle-pass" data-target="cnfpass" style="position: absolute; right: 16px; top: 40px; background: none; border: none; color: var(--color-text-muted); cursor: pointer;">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    @error('cnf_password')
+                                        <span style="color: #fca5a5; font-size: 0.85rem; margin-top: 6px; display: block;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
-        .box-password .show-pass,
-        .box-password .show-pass2 {
-            position: absolute;
-            right: 16px;
-            top: 16px;
-            cursor: pointer;
-            font-size: 20px;
-        }
+                            <!-- Password Validation Rules -->
+                            <div class="mb-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 12px;">
+                                <div style="font-size: 0.85rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 8px;">Password Requirements:</div>
+                                <div class="d-flex flex-column gap-2" style="font-size: 0.9rem;">
+                                    <div id="Length" style="color: var(--color-text-muted);"><i class="fas fa-times me-2" style="color: #ef4444;"></i> At least 8 characters</div>
+                                    <div id="UpperCase" style="color: var(--color-text-muted);"><i class="fas fa-times me-2" style="color: #ef4444;"></i> At least 1 alphabet character</div>
+                                    <div id="Numbers" style="color: var(--color-text-muted);"><i class="fas fa-times me-2" style="color: #ef4444;"></i> At least 1 numeric character</div>
+                                </div>
+                            </div>
 
-        .box-password .show-pass .la-eye,
-        .box-password .show-pass2 .la-eye {
-            display: none;
-        }
+                            <div id="wpass" style="color: #fca5a5; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; display: none; text-align: center;"></div>
 
-        .box-password .show-pass.active .la-eye,
-        .box-password .show-pass2.active .la-eye {
-            display: inline-block;
-        }
+                            <button type="submit" class="btn-premium btn-accent w-100 mb-4" style="height: 56px; font-size: 1.05rem;">
+                                COMPLETE REGISTRATION
+                            </button>
 
-        .box-password .show-pass.active .la-eye-slash,
-        .box-password .show-pass2.active .la-eye-slash {
-            display: none;
-        }
-    </style>
-    <div class="banner-inner-area section-bg-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="banner-inner-contents">
-                        <ul class="inner-menu">
-                            <li class="list"><a href="/"> Home </a></li>
-                            <li class="list">Register</li>
-                        </ul>
-                        <h2 class="banner-inner-title"> Register </h2>
+                            <div class="text-center">
+                                <span style="color: var(--color-text-muted); font-size: 0.95rem;">Already have an account? <a href="{{ route('front.login') }}" class="text-gradient" style="font-weight: 800; text-decoration: none; margin-left: 4px;">Sign In here</a></span>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-
-    <div class="signup-area padding-top-40 padding-bottom-40">
-        <div class="container">
-            <div class="signup-wrapper">
-                <div class="signup-contents">
-                    <form class="signup-forms" action="{{ route('register') }}" method="POST" id="register"
-                        onsubmit="if (typeof CheckPassword !== 'undefined') { return CheckPassword(this); } return true;">
-                        @csrf
-                        <fieldset class="fieldset-info">
-                            <div class="information-all">
-                                <div class="info-forms">
-                                    <div class="single-forms margin-top-30">
-
-                                        <div class="single-content">
-                                            <label class="forms-label"> First Name* </label>
-                                            <input class="form--control @error('first_name') is-invalid @enderror" type="text" pattern="[A-Za-z]{2,}"
-                                                title="Letters only" name="first_name" required placeholder="First Name"
-                                                value="{{ old('first_name') }}">
-                                            @error('first_name')
-                                                <span class="form-error-message">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="single-content">
-                                            <label class="forms-label"> Last Name* </label>
-                                            <input class="form--control @error('last_name') is-invalid @enderror" type="text" name="last_name"
-                                                pattern="[A-Z a-z]{2,}" title="Letters only" required
-                                                placeholder="Last Name" value="{{ old('last_name') }}">
-                                            @error('last_name')
-                                                <span class="form-error-message">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="single-forms margin-top-30">
-                                        <div class="single-content">
-                                            <label class="forms-label"> Email Address* </label>
-                                            <input class="form--control @error('email') is-invalid @enderror" type="email" name="email" required
-                                                placeholder="Type Email" onkeyup="return forceLower(this);"
-                                                value="{{ old('email') }}">
-                                            @error('email')
-                                                <span class="form-error-message">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="single-content">
-                                            <label class="forms-label"> Mobile Number* </label>
-                                            <input class="form--control"
-                                                style="width: 52px; padding-left: 10px; padding-right: 10px;"
-                                                type="text" value="+971" disabled><input class="form--control @error('phone') is-invalid @enderror"
-                                                style="width: calc(100% - 52px);" type="tel" name="phone"
-                                                pattern="5[0-9]{8}" maxlength="9" required
-                                                placeholder="Enter Mobile Number"
-                                                title="Please enter 9 digit number start with 5" value="{{ old('phone') }}">
-                                            @error('phone')
-                                                <span class="form-error-message">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="single-forms margin-top-30">
-                                        <div class="single-content">
-                                            <label class="forms-label"> Password* </label>
-                                            <div class="box-password">
-                                                <input class="form--control password-field @error('password') is-invalid @enderror" type="password"
-                                                    id="pass" required name="password" placeholder="Type Password">
-                                                <span class="show-pass">
-                                                    <i class="la la-eye"></i>
-                                                    <i class="la la-eye-slash"></i>
-                                                </span>
-                                            </div>
-                                            @error('password')
-                                                <span class="form-error-message">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="single-content">
-                                            <label class="forms-label"> Confirm Password* </label>
-                                            <div class="box-password">
-                                                <input class="form--control password-field2 @error('cnf_password') is-invalid @enderror" type="password"
-                                                    id="cnfpass" required name="cnf_password"
-                                                    placeholder="Retype Password">
-                                                <span class="show-pass2">
-                                                    <i class="la la-eye"></i>
-                                                    <i class="la la-eye-slash"></i>
-                                                </span>
-                                            </div>
-                                            @error('cnf_password')
-                                                <span class="form-error-message">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="single-forms margin-top-30">
-                                        <div class="single-content">
-                                            <div id="Length" class="glyphicon glyphicon-remove">Must be at least 8
-                                                charcters</div>
-                                            <div id="UpperCase" class="glyphicon glyphicon-remove">Must have atleast 1
-                                                alphabet case character
-                                            </div>
-                                            <div id="Numbers" class="glyphicon glyphicon-remove">Must have atleast 1
-                                                numeric character</div>
-                                        </div>
-                                    </div>
-
-                                                            <button type="submit"> Register Now </button>
-
-                                    <div class="btn-wrapper margin-top-10" id="wpass"
-                                        style="color:#ff0000;display:none;">
-                                        Password should be minimum 8 characters which contain at least one alphabet and
-                                        one numeric digit
-                                    </div>
-
-                                    <span class="bottom-register"> Already have an Account?
-                                        <a class="resgister-link"
-                                            href="{{ route('front.login') }}">
-                                            Login
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // Password visibility toggle
+        document.querySelectorAll('.toggle-pass').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+
         // Password validation function
         function CheckPassword(form) {
             var decimal = /^(?=.*\d)(?=.*[a-z A-Z]).{8,50}$/;
@@ -202,7 +137,7 @@
                 } else {
                     var wpass = document.getElementById("wpass");
                     if (wpass) {
-                        wpass.innerHTML = "Password and confirm password does not match";
+                        wpass.innerHTML = "<i class='fas fa-exclamation-circle me-1'></i> Password and confirm password do not match";
                         wpass.style.display = "block";
                         setTimeout(function() { wpass.style.display = "none"; }, 8000);
                     }
@@ -211,7 +146,7 @@
             } else {
                 var wpass = document.getElementById("wpass");
                 if (wpass) {
-                    wpass.innerHTML = "Password should be minimum 8 characters which contain at least one alphabet and one numeric digit";
+                    wpass.innerHTML = "<i class='fas fa-exclamation-circle me-1'></i> Password must be at least 8 characters and contain at least one letter and one number.";
                     wpass.style.display = "block";
                     setTimeout(function() { wpass.style.display = "none"; }, 8000);
                 }
@@ -219,120 +154,31 @@
             }
         }
 
-        // Password validation on keyup
-        function ValidatePassword() {
-            var rules = [{
-                Pattern: "[A-Z a-z]",
-                Target: "UpperCase"
-            }, {
-                Pattern: "[0-9]",
-                Target: "Numbers"
-            }];
-
-            var password = $("#pass").val();
-
-            // Length Check
-            $("#Length").removeClass(password.length > 7 ? "glyphicon-remove" : "glyphicon-ok");
-            $("#Length").addClass(password.length > 7 ? "glyphicon-ok" : "glyphicon-remove");
-
-            // Iterate remaining rules
-            for (var i = 0; i < rules.length; i++) {
-                $("#" + rules[i].Target).removeClass(new RegExp(rules[i].Pattern).test(password) ? "glyphicon-remove" : "glyphicon-ok");
-                $("#" + rules[i].Target).addClass(new RegExp(rules[i].Pattern).test(password) ? "glyphicon-ok" : "glyphicon-remove");
-            }
-        }
-
-        // Password visibility toggle
+        // Real-time password validation UI update
         $(document).ready(function() {
-            // Bind password validation on keyup
-            $("#pass").on('keyup', ValidatePassword);
-
-            // Password visibility toggle for password field
-            $(".show-pass").on("click", function() {
-                $(this).toggleClass("active");
-                var passwordField = $(this).siblings(".password-field");
-                if (passwordField.attr("type") == "password") {
-                    passwordField.attr("type", "text");
+            $("#pass").on('keyup', function() {
+                var password = $(this).val();
+                
+                // Length check
+                if (password.length > 7) {
+                    $("#Length").html('<i class="fas fa-check me-2" style="color: var(--color-accent);"></i> At least 8 characters');
                 } else {
-                    passwordField.attr("type", "password");
+                    $("#Length").html('<i class="fas fa-times me-2" style="color: #ef4444;"></i> At least 8 characters');
                 }
-            });
 
-            // Password visibility toggle for confirm password field
-            $(".show-pass2").on("click", function() {
-                $(this).toggleClass("active");
-                var passwordField = $(this).siblings(".password-field2");
-                if (passwordField.attr("type") == "password") {
-                    passwordField.attr("type", "text");
+                // Alphabet check
+                if (/[A-Za-z]/.test(password)) {
+                    $("#UpperCase").html('<i class="fas fa-check me-2" style="color: var(--color-accent);"></i> At least 1 alphabet character');
                 } else {
-                    passwordField.attr("type", "password");
-                }
-            });
-
-            // Ensure password fields are not modified before submission
-            $("#register").on("submit", function(e) {
-                // Get the actual password values directly from the input elements
-                var passwordInput = document.getElementById("pass");
-                var cnfPasswordInput = document.getElementById("cnfpass");
-
-                // Get the actual values
-                var password = passwordInput.value;
-                var cnfPassword = cnfPasswordInput.value;
-
-                // Debug: Log the password length (not the actual password for security)
-                console.log("Password length:", password.length);
-
-                // Ensure password is not empty and not just asterisks
-                if (!password || password.length === 0) {
-                    e.preventDefault();
-                    alert("Please enter a password.");
-                    return false;
+                    $("#UpperCase").html('<i class="fas fa-times me-2" style="color: #ef4444;"></i> At least 1 alphabet character');
                 }
 
-                // Check if password contains only asterisks (which would indicate a problem)
-                if (password.match(/^\*+$/)) {
-                    e.preventDefault();
-                    alert("Password field error detected. Please refresh the page and try again.");
-                    return false;
+                // Number check
+                if (/[0-9]/.test(password)) {
+                    $("#Numbers").html('<i class="fas fa-check me-2" style="color: var(--color-accent);"></i> At least 1 numeric character');
+                } else {
+                    $("#Numbers").html('<i class="fas fa-times me-2" style="color: #ef4444;"></i> At least 1 numeric character');
                 }
-
-                // Ensure the password field type is correct before submission
-                // If it's been changed to text for visibility, change it back to password
-                // to ensure the value is preserved correctly
-                if (passwordInput.type === "text") {
-                    // Temporarily change to password to ensure value is preserved
-                    passwordInput.type = "password";
-                    // The value should remain the same
-                }
-
-                if (cnfPasswordInput.type === "text") {
-                    cnfPasswordInput.type = "password";
-                }
-
-                // Validate password format
-                var decimal = /^(?=.*\d)(?=.*[a-z A-Z]).{8,50}$/;
-                if (!password.match(decimal)) {
-                    e.preventDefault();
-                    var wpass = document.getElementById("wpass");
-                    if (wpass) {
-                        wpass.innerHTML = "Password should be minimum 8 characters which contain at least one alphabet and one numeric digit";
-                        wpass.style.display = "block";
-                    }
-                    return false;
-                }
-
-                if (password !== cnfPassword) {
-                    e.preventDefault();
-                    var wpass = document.getElementById("wpass");
-                    if (wpass) {
-                        wpass.innerHTML = "Password and confirm password does not match";
-                        wpass.style.display = "block";
-                    }
-                    return false;
-                }
-
-                // All checks passed, allow form submission
-                return true;
             });
         });
     </script>

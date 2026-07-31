@@ -13,6 +13,8 @@ class Service extends Model
         'category_id',
         'price_after',
         'price_before',
+        'discount_percentage',
+        'badge_text',
         'is_featured',
         'image','slug'
     ];

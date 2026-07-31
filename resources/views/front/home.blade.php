@@ -1,51 +1,52 @@
+@php
+    $showServices = \App\Models\SiteSetting::get('show_services', '1');
+    $showWhyUs = \App\Models\SiteSetting::get('show_why_us', '1');
+    $showBlogs = \App\Models\SiteSetting::get('show_blogs', '1');
+    $showFaqs = \App\Models\SiteSetting::get('show_faqs', '1');
+    $showTestimonials = \App\Models\SiteSetting::get('show_testimonials', '1');
+@endphp
+
 <x-front.main-layout>
-    <x-front.service-and-area-selection-component />
-    <section class="services-area padding-top-40 padding-bottom-40">
+    <!-- Workout Video Background Hero -->
+    <x-front.hero-video />
+
+    @if($showServices == '1')
+    <section class="premium-section">
         <div class="container">
-            <div class="row justify-content-center" style="position:relative;">
-                <div class="col-xl-6 col-lg-7 col-md-10">
-                    <div class="section-title">
-                        <h2 class="title"> Fitness Services </h2>
-                        <span class="section-para">
-                            <p>
-                                Find the flexibility training you have been looking for.
-                                Practice better balance and find
-                                the calm of your inner self.
-                            </p>
-                        </span>
-                    </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+                <div class="mb-4 mb-md-0">
+                    <span class="text-gradient" style="font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;">OUR PROGRAMS & SERVICES</span>
+                    <h2 style="font-size: 3rem; font-weight: 900; margin-top: 8px;">EXPLORE FITNESS SERVICES</h2>
                 </div>
-                <div class="btn-wrapper service-all">
-                    <a class="cmn-btn btn-bg-2" href="{{ route('front.services') }}">
-                        View all services
-                    </a>&nbsp;
+                <div>
+                    <a class="btn-premium btn-outline" href="{{ route('front.services') }}">
+                        VIEW ALL SERVICES <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
                 </div>
             </div>
 
-
-            <div class="row margin-top-20">
-                <div class="col-lg-12">
-                    <x-front.services :services="$services" />
-                    <div class="btn-wrapper service-bottom">
-                        <a class="cmn-btn btn-bg-2" href="{{ route('front.services') }}"> 
-                            View all services
-                        </a>
-                        &nbsp;
-                    </div>
-                </div>
-            </div>
+            <x-front.services :services="$services" />
         </div>
     </section>
+    @endif
 
-    <x-front.why-choose-us />
+    @if($showWhyUs == '1')
+        <x-front.why-choose-us />
+    @endif
 
     <x-front.start-as-partner />
 
-    <x-front.blog-slider :blogs="$blogs"/>
+    @if($showBlogs == '1')
+        <x-front.blog-slider :blogs="$blogs"/>
+    @endif
 
-    <x-front.home-faqs />
+    @if($showFaqs == '1')
+        <x-front.home-faqs />
+    @endif
 
-    <x-front.testmonials />
+    @if($showTestimonials == '1')
+        <x-front.testmonials :testimonials="$testimonials" />
+    @endif
 
     <x-front.modal />
 

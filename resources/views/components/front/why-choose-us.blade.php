@@ -1,90 +1,58 @@
-<section class="margketplace-area padding-top-40 padding-bottom-40 section-bg-2">
+<section class="padding-top-60 padding-bottom-60">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h2 class="title"> Why My Fitness? </h2>
-                    <span class="section-para">
-                        <p data-start="143" data-end="540">At My Fitness.ae, we bring fitness, wellness, and recovery
-                            services right to your doorstep&mdash;making it easier than ever to stay active,
-                            healthy, and stress-free in Dubai and Abu Dhabi. Whether you're looking for personal
-                            training at home, yoga sessions, a relaxing massage, spors coaching or other fitness
-                            services, our platform connects you with certified fitness professionals, yoga
-                            instructors, and massage therapists ready to support your wellness goals.</p>
-                        <p data-start="542" data-end="892">We understand that life gets busy, which is why we
-                            offer
-                            on-demand services designed to fit your schedule. Whether you're a working professional,
-                            a busy parent, or simply someone who values flexibility, our expert team brings
-                            personalized workouts, guided yoga, and stress-relieving massages to your home, office,
-                            or even your favorite outdoor space.</p>
-                        <p data-start="894" data-end="1145">With My Fitness, you can also book boxing, kickboxing,
-                            MMA
-                            coaching, running sessions, and more&mdash;all from top fitness professionals. Our
-                            easy-to-use platform allows you to schedule sessions, track progress, and stay motivated
-                            with just a few clicks.</p>
-                        <p data-start="1147" data-end="1339" data-is-last-node="" data-is-only-node="">Take
-                            charge
-                            of your health and wellness with My Fitness.ae&mdash;your go-to destination for fitness
-                            and
-                            wellness in UAE. Stay fit, feel great, and reach your goals&mdash;on your terms.</p>
-                    </span>
-                </div>
-            </div>
+        <div class="text-center mb-5">
+            <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--brand-text); margin-bottom: 16px;">WHY CHOOSE MYFITNESS</h2>
+            <p style="color: var(--brand-text-muted); max-width: 600px; margin: 0 auto;">
+                We bring premium fitness and wellness experiences directly to your doorstep. Here is what sets us apart.
+            </p>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 margin-top-30 marketplace-child">
-                <div class="single-marketplace style-02 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="icon">
-                        <i class="las la-hand-holding-usd"></i>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="cult-feature-box">
+                    <div class="cult-feature-icon">
+                        <i class="fas fa-home"></i>
                     </div>
-                    <div class="marketplace-contents">
-                        <h4 class="common-title-two"> Value For Money </h4>
-                        <p class="common-para">We understand health and fitness are personal journeys. That’s why
-                            we
-                            offer a range of affordable fitness services to fit your goals. Our team of experts are
-                            here to support you in every step. Join us and reach your goals together! </p>
-                    </div>
+                    <h4 class="cult-feature-title">Train Anywhere</h4>
+                    <p class="cult-feature-text">
+                        We deliver the workout to you. Your home, office, private gym, or local park in Dubai.
+                    </p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 margin-top-30 marketplace-child">
-                <div class="single-marketplace style-02 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="icon">
-                        <i class="las la-tools"></i>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="cult-feature-box">
+                    <div class="cult-feature-icon">
+                        <i class="fas fa-certificate"></i>
                     </div>
-                    <div class="marketplace-contents">
-                        <h4 class="common-title-two"> Service Commitment </h4>
-                        <p class="common-para">We believe a healthy lifestyle is essential for happiness. That’s
-                            why
-                            we offer diverse fitness programs and classes with safe, well-maintained equipment and
-                            facilities. With us, you can confidently pursue your fitness journey toward achieving
-                            your personal goals. </p>
-                    </div>
+                    <h4 class="cult-feature-title">Certified Coaches</h4>
+                    <p class="cult-feature-text">
+                        100% background-checked, internationally certified master trainers and specialists.
+                    </p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 margin-top-30 marketplace-child">
-                <div class="single-marketplace style-02 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="icon">
-                        <i class="las la-headset"></i>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="cult-feature-box">
+                    <div class="cult-feature-icon">
+                        <i class="far fa-calendar-check"></i>
                     </div>
-                    <div class="marketplace-contents">
-                        <h4 class="common-title-two"> Dedicated Support </h4>
-                        <p class="common-para">Achieve your fitness goals with the help of our dedicated support
-                            team. Our friendly experts are just an email or WhatsApp message away, ready to assist
-                            you with any questions or concerns you may have. </p>
-                    </div>
+                    <h4 class="cult-feature-title">Flexible Schedule</h4>
+                    <p class="cult-feature-text">
+                        Book sessions that fit your busy lifestyle, from early morning to late evening.
+                    </p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 margin-top-30 marketplace-child">
-                <div class="single-marketplace style-02 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="icon">
-                        <i class="las la-money-bill-wave"></i>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="cult-feature-box">
+                    <div class="cult-feature-icon">
+                        <i class="fas fa-tag"></i>
                     </div>
-                    <div class="marketplace-contents">
-                        <h4 class="common-title-two"> Secure Payment </h4>
-                        <p class="common-para">We have invested in industry-standard infrastructure that ensures
-                            your private information is never compromised. Our secure payment gateway gives you
-                            peace of mind and confidence in conducting online transactions. </p>
-                    </div>
+                    <h4 class="cult-feature-title">Transparent Pricing</h4>
+                    <p class="cult-feature-text">
+                        No hidden fees or gym memberships. Pay only for the sessions you book with clear packages.
+                    </p>
                 </div>
             </div>
         </div>

@@ -43,6 +43,8 @@ Route::get('cookie-policy', [PagesController::class, 'cookiePolicy'])->name('fro
 Route::get('service-delivery', [PagesController::class, 'serviceDelivery'])->name('front.serviceDelivery');
 Route::post('contact-forms/create', [ContactFormController::class, 'store'])
     ->name('form.store');
+Route::post('discount-lead/store', [\App\Http\Controllers\Front\DiscountLeadFrontController::class, 'store'])
+    ->name('front.discount.store');
 Route::post('create-order/{service}/book',[OrderController::class , 'create'])
     ->middleware(['auth','verified','has-details'])
     ->name('front.order.create');
