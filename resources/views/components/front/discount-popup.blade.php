@@ -65,13 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     closeBtn.addEventListener('click', function() {
         modal.classList.remove('active');
-        localStorage.setItem('myfitness_popup_dismissed', '1');
     });
 
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.classList.remove('active');
-            localStorage.setItem('myfitness_popup_dismissed', '1');
         }
     });
 

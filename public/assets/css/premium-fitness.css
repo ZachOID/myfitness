@@ -9,7 +9,7 @@
   --color-primary-glow: rgba(255, 255, 255, 0.1);
   --color-secondary: var(--brand-secondary, #3b82f6);
   --color-accent: var(--brand-primary, #10b981);
-  --color-text: #fafafa;
+  --color-text: var(--brand-text, #fafafa);
   --color-text-muted: #a1a1aa;
   
   --font-main: 'Outfit', sans-serif;
@@ -102,7 +102,7 @@ a {
 
 .btn-accent {
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: #fff;
+  color: var(--brand-button-text, #fff);
   box-shadow: 0 8px 24px var(--color-primary-glow);
 }
 

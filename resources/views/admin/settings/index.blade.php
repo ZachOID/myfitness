@@ -36,6 +36,22 @@
                             <label class="font-weight-bold">Background Color (Dark Theme)</label>
                             <input type="color" name="bg_color" class="form-control" value="{{ $settings['bg_color'] }}">
                         </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Main Text Color</label>
+                            <input type="color" name="text_color" class="form-control" value="{{ $settings['text_color'] }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Button Text Color</label>
+                            <input type="color" name="button_text_color" class="form-control" value="{{ $settings['button_text_color'] }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Preloader Icon Color</label>
+                            <input type="color" name="preloader_color" class="form-control" value="{{ $settings['preloader_color'] }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Preloader Loading Text</label>
+                            <input type="text" name="preloader_text" class="form-control" value="{{ $settings['preloader_text'] }}">
+                        </div>
                     </div>
                 </div>
 

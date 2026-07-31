@@ -35,6 +35,8 @@
         $primaryColor = \App\Models\SiteSetting::get('primary_color', '#dfff00');
         $secondaryColor = \App\Models\SiteSetting::get('secondary_color', '#00f2fe');
         $bgColor = \App\Models\SiteSetting::get('bg_color', '#0b0d14');
+        $textColor = \App\Models\SiteSetting::get('text_color', '#fafafa');
+        $btnTextColor = \App\Models\SiteSetting::get('button_text_color', '#000000');
     @endphp
 
     <style>
@@ -42,6 +44,8 @@
             --brand-primary: {{ $primaryColor }} !important;
             --brand-secondary: {{ $secondaryColor }} !important;
             --brand-bg: {{ $bgColor }} !important;
+            --brand-text: {{ $textColor }} !important;
+            --brand-button-text: {{ $btnTextColor }} !important;
         }
     </style>
 </head>

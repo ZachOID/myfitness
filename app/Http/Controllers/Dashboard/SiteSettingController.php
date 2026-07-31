@@ -15,7 +15,10 @@ class SiteSettingController extends Controller
             'primary_color'       => SiteSetting::get('primary_color', '#dfff00'),
             'secondary_color'     => SiteSetting::get('secondary_color', '#00f2fe'),
             'bg_color'            => SiteSetting::get('bg_color', '#0b0d14'),
-            'text_color'          => SiteSetting::get('text_color', '#ffffff'),
+            'text_color'          => SiteSetting::get('text_color', '#fafafa'),
+            'button_text_color'   => SiteSetting::get('button_text_color', '#000000'),
+            'preloader_color'     => SiteSetting::get('preloader_color', '#10b981'),
+            'preloader_text'      => SiteSetting::get('preloader_text', 'myfitness.ae'),
             
             'hero_video_url'      => SiteSetting::get('hero_video_url', 'https://assets.mixkit.co/videos/preview/mixkit-man-runs-on-a-treadmill-in-a-gym-41315-large.mp4'),
             'hero_title'          => SiteSetting::get('hero_title', 'ELEVATE YOUR FITNESS JOURNEY WITH EXPERT PERSONAL TRAINERS'),
