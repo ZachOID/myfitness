@@ -9,7 +9,7 @@
 
 <x-front.preloader />
 
-<body class="premium-theme">
+<body class="premium-theme" style="zoom: 80%;">
     <x-front.moving-banner />
     <x-front.header />
     

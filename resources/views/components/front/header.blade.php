@@ -31,7 +31,7 @@
                     </a>
                 @endguest
 
-                <a href="{{ route('front.services') }}" class="btn-premium btn-accent" style="padding: 12px 28px; font-size: 0.9rem;">
+                <a href="{{ route('front.services') }}" class="btn-premium btn-accent" style="padding: 12px 28px; font-size: 0.9rem; margin-left: 30px;">
                     BOOK NOW
                 </a>
             </div>
