@@ -1,24 +1,15 @@
-@php
-    $showHero = \App\Models\SiteSetting::get('show_hero_video', '1');
-    $heroSlidesRaw = \App\Models\SiteSetting::get('hero_slides', json_encode([['type' => 'video', 'url' => 'https://assets.mixkit.co/videos/preview/mixkit-man-runs-on-a-treadmill-in-a-gym-41315-large.mp4']]));
-    $heroSlides = json_decode($heroSlidesRaw, true);
-    $heroFadeEffect = \App\Models\SiteSetting::get('hero_fade_effect', '1');
-    $heroTitle = \App\Models\SiteSetting::get('hero_title', 'ELEVATE YOUR FITNESS JOURNEY WITH EXPERT PERSONAL TRAINERS');
-    $heroSubtitle = \App\Models\SiteSetting::get('hero_subtitle', 'Certified trainers at your home, gym, or pool across Dubai & UAE. Flexible scheduling & guaranteed transformation.');
-@endphp
-
 @if($showHero == '1')
-<section class="premium-hero" style="position: relative; overflow: hidden;">
+<section class="premium-hero hero-section">
     <!-- Carousel Background -->
-    <div class="hero-carousel premium-hero-bg" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0;">
+    <div class="hero-carousel premium-hero-bg hero-carousel-wrapper" data-fade="{{ $heroFadeEffect == '1' ? 'true' : 'false' }}">
         @foreach($heroSlides as $slide)
-            <div style="width: 100vw; height: 100vh; position: relative;">
+            <div class="hero-slide-item">
                 @if(($slide['type'] ?? 'image') == 'video')
-                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <video autoplay muted loop playsinline class="hero-media-item">
                         <source src="{{ $slide['url'] }}" type="video/mp4">
                     </video>
                 @else
-                    <img src="{{ $slide['url'] }}" alt="Hero Background" style="width: 100%; height: 100%; object-fit: cover;" class="animate__animated animate__fadeIn">
+                    <img src="{{ $slide['url'] }}" alt="Hero Background" class="hero-media-item animate__animated animate__fadeIn">
                 @endif
             </div>
         @endforeach
@@ -69,22 +60,4 @@
         </div>
     </div>
 </section>
-@if(count($heroSlides) > 1)
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if ($.fn.slick) {
-            $('.hero-carousel').slick({
-                fade: {{ $heroFadeEffect == '1' ? 'true' : 'false' }},
-                autoplay: true,
-                autoplaySpeed: 5000,
-                speed: 1000,
-                arrows: false,
-                dots: false,
-                pauseOnHover: false,
-                cssEase: 'linear'
-            });
-        }
-    });
-</script>
-@endif
 @endif
