@@ -10,6 +10,10 @@ class SiteSettingController extends Controller
 {
     public function index()
     {
+        $heroSlidesRaw = SiteSetting::get('hero_slides', json_encode([
+            ['type' => 'video', 'url' => 'https://assets.mixkit.co/videos/preview/mixkit-man-runs-on-a-treadmill-in-a-gym-41315-large.mp4']
+        ]));
+
         $settings = [
             'brand_name'          => SiteSetting::get('brand_name', 'My Fitness'),
             'primary_color'       => SiteSetting::get('primary_color', '#dfff00'),
@@ -20,7 +24,9 @@ class SiteSettingController extends Controller
             'preloader_color'     => SiteSetting::get('preloader_color', '#10b981'),
             'preloader_text'      => SiteSetting::get('preloader_text', 'myfitness.ae'),
             
-            'hero_video_url'      => SiteSetting::get('hero_video_url', 'https://assets.mixkit.co/videos/preview/mixkit-man-runs-on-a-treadmill-in-a-gym-41315-large.mp4'),
+            'hero_slides'         => json_decode($heroSlidesRaw, true),
+            'hero_fade_effect'    => SiteSetting::get('hero_fade_effect', '1'),
+            
             'hero_title'          => SiteSetting::get('hero_title', 'ELEVATE YOUR FITNESS JOURNEY WITH EXPERT PERSONAL TRAINERS'),
             'hero_subtitle'       => SiteSetting::get('hero_subtitle', 'Certified trainers at your home, gym, or pool across Dubai & UAE.'),
 
@@ -49,11 +55,17 @@ class SiteSettingController extends Controller
         $data = $request->except(['_token', '_method']);
 
         // Checkboxes defaults for switches
-        $switches = ['show_ticker', 'show_popup', 'show_hero_video', 'show_services', 'show_why_us', 'show_pricing', 'show_testimonials', 'show_blogs', 'show_faqs'];
+        $switches = ['hero_fade_effect', 'show_ticker', 'show_popup', 'show_hero_video', 'show_services', 'show_why_us', 'show_pricing', 'show_testimonials', 'show_blogs', 'show_faqs'];
         foreach ($switches as $sw) {
             if (!isset($data[$sw])) {
                 $data[$sw] = '0';
             }
+        }
+
+        if (isset($data['hero_slides']) && is_array($data['hero_slides'])) {
+            $data['hero_slides'] = json_encode(array_values($data['hero_slides']));
+        } else {
+            $data['hero_slides'] = json_encode([]);
         }
 
         foreach ($data as $key => $val) {

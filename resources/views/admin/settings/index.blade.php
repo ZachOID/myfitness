@@ -55,17 +55,38 @@
                     </div>
                 </div>
 
-                <!-- Hero Video Background -->
+                <!-- Hero Carousel Background -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3 bg-dark text-white">
-                        <h6 class="m-0 font-weight-bold"><i class="fas fa-video mr-2"></i>Workout Video Hero Section</h6>
+                    <div class="card-header py-3 bg-dark text-white d-flex justify-content-between align-items-center">
+                        <h6 class="m-0 font-weight-bold"><i class="fas fa-images mr-2"></i>Dynamic Hero Carousel</h6>
+                        <div class="d-flex align-items-center">
+                            <div class="custom-control custom-switch mr-3">
+                                <input type="checkbox" class="custom-control-input" id="switchFade" name="hero_fade_effect" value="1" {{ $settings['hero_fade_effect'] == '1' ? 'checked' : '' }}>
+                                <label class="custom-control-label text-white" for="switchFade">Fade Effect</label>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary" onclick="addHeroSlide()"><i class="fas fa-plus mr-1"></i>Add Slide</button>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
-                            <label class="font-weight-bold">Workout Video Background URL (.mp4)</label>
-                            <input type="text" name="hero_video_url" class="form-control" value="{{ $settings['hero_video_url'] }}">
-                            <small class="text-muted">Enter direct video link or upload to public assets.</small>
+                        <div id="hero-slides-container">
+                            @foreach($settings['hero_slides'] ?? [] as $index => $slide)
+                                <div class="form-row align-items-center mb-3 slide-item">
+                                    <div class="col-md-3">
+                                        <select name="hero_slides[{{ $index }}][type]" class="form-control" required>
+                                            <option value="image" {{ ($slide['type'] ?? '') == 'image' ? 'selected' : '' }}>Image</option>
+                                            <option value="video" {{ ($slide['type'] ?? '') == 'video' ? 'selected' : '' }}>Video</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" name="hero_slides[{{ $index }}][url]" class="form-control" value="{{ $slide['url'] ?? '' }}" placeholder="Enter Image or Video URL" required>
+                                    </div>
+                                    <div class="col-md-2 text-right">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.slide-item').remove()"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
+                        <small class="text-muted d-block mb-3">If you only add one slide, it will be a static background. Add multiple slides to enable the fading carousel.</small>
                         <div class="form-group">
                             <label class="font-weight-bold">Hero Headline Title</label>
                             <input type="text" name="hero_title" class="form-control" value="{{ $settings['hero_title'] }}">
@@ -161,4 +182,29 @@
             </div>
         </div>
     </form>
+
+    <script>
+        let slideIndex = {{ count($settings['hero_slides'] ?? []) }};
+        function addHeroSlide() {
+            const container = document.getElementById('hero-slides-container');
+            const html = `
+                <div class="form-row align-items-center mb-3 slide-item">
+                    <div class="col-md-3">
+                        <select name="hero_slides[${slideIndex}][type]" class="form-control" required>
+                            <option value="image">Image</option>
+                            <option value="video">Video</option>
+                        </select>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" name="hero_slides[${slideIndex}][url]" class="form-control" placeholder="Enter Image or Video URL" required>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.slide-item').remove()"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+            slideIndex++;
+        }
+    </script>
 </x-dashboard.main-layout>
