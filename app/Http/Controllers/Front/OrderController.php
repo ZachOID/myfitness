@@ -21,7 +21,6 @@ class OrderController extends Controller
 {
     public function create(Request $request, Service $service)
     {
-        // dd($service->price_after * $request->sessions_number);
         $request->validate([
             'sessions_number'           => 'required|integer|min:1',
             'is_online'                 => 'required|boolean',

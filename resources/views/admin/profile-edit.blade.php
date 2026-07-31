@@ -52,18 +52,13 @@
         $(document).ready(function() {
             $('#deleteImageButton').click(function(){
                 $('#profileImage').hide();
-                console.log('profile image hided');
                 $('form').append('<input type="hidden" id="hidden-input" name="remove_img" value="1" >');
-                console.log('hidden input appended');
                 $(this).hide();
-                console.log('button hide');
             });
             $('input[name="image"]').on('change',function(e){
                 const file = e.target.files[0];
-                console.log(file);
                 if(file){
                     const reader = new FileReader();
-                    console.log(reader);
                     reader.onload = function (e){
                         $('#profileImage').attr('src', e.target.result).show();
                     }
