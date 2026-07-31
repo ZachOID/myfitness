@@ -17,9 +17,9 @@
                 <li class="list @if (request()->is('user/orders*')) active @endif">
                     <a href="{{ route('front.orders') }}"> <i class="las la-tasks"></i> Orders </a>
                 </li>
-                {{-- <li class="list @if (request()->is('user/address*')) active @endif">
-                    <a href="{{ route('front.address') }}"> <i class="las la-address-book"></i> Address Book </a>
-                </li> --}}
+                <li class="list @if (request()->is('user/payments*')) active @endif">
+                    <a href="{{ route('front.payments') }}"> <i class="las la-wallet"></i> Payments </a>
+                </li>
                 <li class="list @if (request()->is('user/change-password*')) active @endif">
                     <a href="{{ route('front.change-password') }}"> <i class="las la-cog"></i>Change Password</a>
                 </li>

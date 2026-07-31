@@ -552,3 +552,65 @@ a {
   letter-spacing: 1px;
   margin-bottom: 24px;
 }
+
+/* Premium Theme Form Elements */
+body.premium-theme .form-control,
+body.premium-theme .form--control,
+body.premium-theme input[type="text"],
+body.premium-theme input[type="tel"],
+body.premium-theme input[type="email"],
+body.premium-theme input[type="password"],
+body.premium-theme input[type="number"],
+body.premium-theme textarea,
+body.premium-theme select {
+  background-color: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+body.premium-theme .form-control:focus,
+body.premium-theme .form--control:focus,
+body.premium-theme input[type="text"]:focus,
+body.premium-theme input[type="tel"]:focus,
+body.premium-theme input[type="email"]:focus,
+body.premium-theme input[type="password"]:focus,
+body.premium-theme input[type="number"]:focus,
+body.premium-theme textarea:focus,
+body.premium-theme select:focus {
+  border-color: var(--color-primary) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--color-primary) !important;
+}
+
+body.premium-theme .form-control::placeholder,
+body.premium-theme .form--control::placeholder,
+body.premium-theme input::placeholder,
+body.premium-theme textarea::placeholder {
+  color: var(--color-text-muted) !important;
+}
+
+body.premium-theme .single-info-overview .single-info-input .info-title {
+  color: var(--color-text) !important;
+}
+
+/* nice-select Support */
+body.premium-theme .nice-select {
+  background-color: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+body.premium-theme .nice-select .list {
+  background-color: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+body.premium-theme .nice-select .option {
+  color: var(--color-text) !important;
+}
+
+body.premium-theme .nice-select .option:hover,
+body.premium-theme .nice-select .option.focus,
+body.premium-theme .nice-select .option.selected.focus {
+  background-color: var(--color-surface-hover) !important;
+}

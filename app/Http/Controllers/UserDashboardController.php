@@ -86,6 +86,14 @@ class UserDashboardController extends Controller
         return view('front.user-dashboard.orders', compact('calc', 'orders'));
     }
 
+    public function userPayments()
+    {
+        $user = Auth::user();
+        $payments = Order::with('service')->where('user_id', $user->id)->latest()->paginate(10);
+        
+        return view('front.user-dashboard.payments', compact('payments'));
+    }
+
     public function userChangePassword()
     {
         return view('front.user-dashboard.change-password');
