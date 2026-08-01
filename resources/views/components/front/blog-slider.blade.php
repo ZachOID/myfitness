@@ -16,10 +16,13 @@
                     @foreach ($blogs as $blog)
                         <div class="single-blog-item wow fadeInUp" data-wow-delay=".2s">
                             <div class="single-blog style-02">
+                                @php
+                                    $imgUrl = str_starts_with($blog->image, 'http') ? $blog->image : asset('storage/' . $blog->image);
+                                @endphp
                                 <a href="{{ route('front.blogDetails',$blog->slug) }}" class="blog-thumb">
-                                    <img src="{{ asset('storage/'.$blog->image) }}"
-                                        alt="{{ $blog->name }}" width="350"
-                                        height="auto" loading="lazy">
+                                    <img src="{{ $imgUrl }}"
+                                        alt="{{ $blog->title }}" width="350"
+                                        height="auto" loading="lazy" onError="this.src='https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600'">
                                 </a>
                                 <div class="blog-contents">
                                     <ul class="tags hover-color-two">

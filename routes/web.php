@@ -71,7 +71,7 @@ Route::middleware('auth')->as('front.')->prefix('user')->group(function () {
     // Route::put('address-update/{address}', [UserDashboardController::class, 'userAddressUpdate'])->name('address-update');
     // Route::delete('address-delete/{address}', [UserDashboardController::class, 'userAddressDelete'])->name('address-delete');
     Route::get('change-password', [UserDashboardController::class, 'userChangePassword'])->name('change-password');
-    Route::put('change-password', [UserDashboardController::class, 'changePassword'])->name('change-password');
+    Route::put('change-password', [UserDashboardController::class, 'changePassword'])->name('change-password.update');
     Route::get('payments', [UserDashboardController::class, 'userPayments'])->name('payments');
     Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
     Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
