@@ -43,7 +43,7 @@
     @endif
 
     @if($showFaqs == '1')
-        <x-front.home-faqs />
+        <x-front.home-faqs :faqs="$faqs" />
     @endif
 
     @if($showTestimonials == '1')
