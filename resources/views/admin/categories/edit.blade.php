@@ -18,6 +18,14 @@
             </div>
 
             <div class="form-group">
+                <label for="">{{ __('Badge Color') }}</label>
+                <input type="color" name="color" class="form-control form-control-color @error('color') is-invalid @enderror" value="{{ old('color', $category->color) ?? '#000000' }}" title="Choose your color">
+                @error('color')
+                    <span class="form-error-message">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="">{{ __('Existing Image') }}</label>
                 <div>
                     @if ($category->image)

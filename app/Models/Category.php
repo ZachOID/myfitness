@@ -10,7 +10,8 @@ class Category extends Model
         'name',
         'slug',
         'description',
-        'image'
+        'image',
+        'color'
     ];
 
     public function getRouteKeyName()

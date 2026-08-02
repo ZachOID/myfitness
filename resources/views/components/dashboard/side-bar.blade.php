@@ -25,7 +25,7 @@
         </a>
     </li>
 
-    <!-- Site Settings & Cult Controls -->
+    <!-- Site Settings & Design Controls -->
     <li class="nav-item {{ Route::is('admins.settings.*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admins.settings.index') }}">
             <i class="fas fa-cog text-warning"></i>

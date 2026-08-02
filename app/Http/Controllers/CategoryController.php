@@ -36,9 +36,10 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
+            'color' => 'nullable|string|max:7',
         ]);
 
-        $data = $request->only(['name','description']);
+        $data = $request->only(['name','description', 'color']);
 
         $slug = Str::slug($request->name);
 
@@ -82,9 +83,10 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
+            'color' => 'nullable|string|max:7',
         ]);
 
-        $data = $request->only(['name', 'description']);
+        $data = $request->only(['name', 'description', 'color']);
 
         $slug = Str::slug($request->name);
 

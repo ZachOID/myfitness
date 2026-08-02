@@ -21,6 +21,14 @@
             </div>
 
             <div class="form-group">
+                <label for="">{{ __('Badge Color') }}</label>
+                <input type="color" name="color" class="form-control form-control-color @error('color') is-invalid @enderror" value="{{ old('color', '#000000') }}" title="Choose your color">
+                @error('color')
+                    <span class="form-error-message">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="">{{ __('Change Photo') }}</label>
                 <div>
                     <input type="file" name="image" class="@error('image') is-invalid @enderror">

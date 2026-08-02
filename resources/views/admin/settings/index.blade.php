@@ -1,6 +1,6 @@
 <x-dashboard.main-layout>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-sliders-h text-warning mr-2"></i>Site Settings & Cult.fit Design Controls</h1>
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-sliders-h text-warning mr-2"></i>Site Settings & Design Controls</h1>
     </div>
 
     @if(session('success'))
