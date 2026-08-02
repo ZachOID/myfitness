@@ -49,6 +49,14 @@
         </a>
     </li>
 
+    <!-- FAQs CMS -->
+    <li class="nav-item {{ Route::is('admins.faqs.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admins.faqs.index') }}">
+            <i class="fas fa-question-circle text-info"></i>
+            <span> {{ __('FAQs') }} </span>
+        </a>
+    </li>
+
     <li class="nav-item {{ Route::is('admins.categories.*') ? 'active' : '' }}"
         style="{{ Route::is('admins.categories.*') ? 'background-color: darkslategrey;' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecategories"

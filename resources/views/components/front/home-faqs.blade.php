@@ -7,72 +7,52 @@
             </p>
         </div>
 
-        <div class="row g-4">
-            <!-- Left Column FAQs -->
-            <div class="col-lg-6">
-                <div class="cult-faq-card">
-                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
-                        <span>How do doorstep fitness sessions work?</span>
-                        <i class="fas fa-chevron-down cult-faq-icon"></i>
+        @if(isset($faqs) && $faqs->count() > 0)
+            <div class="row g-4 faq-container">
+                @php
+                    $faqColumns = $faqs->split(2);
+                @endphp
+                
+                @foreach($faqColumns as $column)
+                    <div class="col-lg-6">
+                        @foreach($column as $faq)
+                            <div class="cult-faq-card">
+                                <div class="cult-faq-header" onclick="toggleFaq(this)">
+                                    <span>{{ $faq->question }}</span>
+                                    <i class="fas fa-chevron-down cult-faq-icon"></i>
+                                </div>
+                                <div class="cult-faq-body">
+                                    {{ $faq->answer }}
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="cult-faq-body">
-                        Our certified trainers come directly to your preferred location in Dubai—whether it's your home, building gym, office, or a local park. We bring all the necessary equipment for your session.
-                    </div>
-                </div>
-
-                <div class="cult-faq-card">
-                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
-                        <span>Are the trainers certified?</span>
-                        <i class="fas fa-chevron-down cult-faq-icon"></i>
-                    </div>
-                    <div class="cult-faq-body">
-                        Yes, 100% of our trainers are internationally certified master trainers with specialized qualifications in their respective fields (PT, Yoga, Swimming, etc.) and hold valid UAE REPs registration.
-                    </div>
-                </div>
-
-                <div class="cult-faq-card">
-                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
-                        <span>Do I need my own equipment?</span>
-                        <i class="fas fa-chevron-down cult-faq-icon"></i>
-                    </div>
-                    <div class="cult-faq-body">
-                        No equipment is needed! Our trainers will bring everything required for a highly effective workout based on your specific goals and program.
-                    </div>
-                </div>
+                @endforeach
             </div>
-
-            <!-- Right Column FAQs -->
-            <div class="col-lg-6">
-                <div class="cult-faq-card">
-                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
-                        <span>How do I get my 10% discount?</span>
-                        <i class="fas fa-chevron-down cult-faq-icon"></i>
-                    </div>
-                    <div class="cult-faq-body">
-                        Simply enter your email address in the welcome pop-up when you first visit the site, and we will email you a unique promo code for 10% off your very first session booking.
-                    </div>
-                </div>
-
-                <div class="cult-faq-card">
-                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
-                        <span>Can I reschedule or cancel a session?</span>
-                        <i class="fas fa-chevron-down cult-faq-icon"></i>
-                    </div>
-                    <div class="cult-faq-body">
-                        Yes, you can easily reschedule or cancel your session through your dashboard up to 12 hours before the scheduled start time without any penalty.
-                    </div>
-                </div>
-
-                <div class="cult-faq-card">
-                    <div class="cult-faq-header" onclick="this.parentElement.classList.toggle('active')">
-                        <span>Do you offer package discounts?</span>
-                        <i class="fas fa-chevron-down cult-faq-icon"></i>
-                    </div>
-                    <div class="cult-faq-body">
-                        Yes! We offer substantial discounts when you book a package. You can save 10% on a 5-session package, 20% on 10 sessions, and up to 30% on our 20-session ultimate package.
-                    </div>
-                </div>
-            </div>
-        </div>
+        @else
+            <p class="text-center text-muted">No FAQs available at the moment.</p>
+        @endif
     </div>
 </section>
+
+<script>
+    function toggleFaq(element) {
+        // Find all cards
+        let allCards = document.querySelectorAll('.cult-faq-card');
+        let currentCard = element.parentElement;
+        
+        // If clicking the one that's already open, just close it
+        if (currentCard.classList.contains('active')) {
+            currentCard.classList.remove('active');
+            return;
+        }
+
+        // Close all others
+        allCards.forEach(card => {
+            card.classList.remove('active');
+        });
+
+        // Open the clicked one
+        currentCard.classList.add('active');
+    }
+</script>

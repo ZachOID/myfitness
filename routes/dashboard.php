@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\DiscountLeadController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\SiteSettingController;
 use App\Http\Controllers\Dashboard\TestimonialController;
+use App\Http\Controllers\Dashboard\FaqController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
@@ -39,6 +40,9 @@ Route::group([
     // Discount Popup Lead Emails
     Route::get('discount-leads', [DiscountLeadController::class, 'index'])->name('discount-leads.index');
     Route::delete('discount-leads/{lead}', [DiscountLeadController::class, 'destroy'])->name('discount-leads.destroy');
+
+    // FAQs CMS
+    Route::resource('faqs', FaqController::class)->except(['show']);
 
     Route::resource('categories', CategoryController::class);
     Route::resource('services', ServiceController::class);

@@ -22,7 +22,10 @@ class PagesController extends Controller
         });
         $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('sort_order', 'asc')->get();
         $categories = Category::withCount('services')->get();
-        return view('front.home', compact('services','blogs','testimonials', 'categories'));
+        
+        $faqs = \App\Models\Faq::where('is_active', true)->orderBy('sort_order', 'asc')->get();
+        
+        return view('front.home', compact('services','blogs','testimonials', 'categories', 'faqs'));
     }
 
     public function about()
@@ -109,7 +112,8 @@ class PagesController extends Controller
 
     public function faq()
     {
-        return view('front.faqs');
+        $faqs = \App\Models\Faq::where('is_active', true)->orderBy('sort_order', 'asc')->get();
+        return view('front.faqs', compact('faqs'));
     }
 
     public function serviceDetails(Service $service)
