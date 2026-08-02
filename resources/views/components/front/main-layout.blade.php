@@ -27,6 +27,25 @@
     <script src="{{ asset('assets/js/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.hero-carousel');
+            if (carousel && typeof jQuery !== 'undefined' && jQuery.fn.slick) {
+                const fadeEffect = carousel.dataset.fade === 'true';
+                jQuery(carousel).slick({
+                    fade: fadeEffect,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    speed: 1000,
+                    arrows: false,
+                    dots: false,
+                    pauseOnHover: false,
+                    cssEase: 'linear'
+                });
+            }
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @if (session('success') || session('error'))
