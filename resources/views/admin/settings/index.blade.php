@@ -151,6 +151,18 @@
                                     <label class="custom-control-label font-weight-bold" for="switchPopup">Active Pop-Up Modal</label>
                                 </div>
                                 <div class="form-group">
+                                    <label class="font-weight-bold">Popup Trigger Event</label>
+                                    <select name="popup_trigger_type" class="form-control">
+                                        <option value="time" {{ $settings['popup_trigger_type'] == 'time' ? 'selected' : '' }}>Time Delay (in Seconds)</option>
+                                        <option value="scroll" {{ $settings['popup_trigger_type'] == 'scroll' ? 'selected' : '' }}>Scroll Percentage (%)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Trigger Value</label>
+                                    <input type="number" step="0.1" name="popup_trigger_value" class="form-control" value="{{ $settings['popup_trigger_value'] }}">
+                                    <small class="text-muted">Enter seconds (e.g., 1.5) or scroll percentage (e.g., 50).</small>
+                                </div>
+                                <div class="form-group">
                                     <label class="font-weight-bold">Popup Headline</label>
                                     <input type="text" name="popup_headline" class="form-control" value="{{ $settings['popup_headline'] }}">
                                 </div>

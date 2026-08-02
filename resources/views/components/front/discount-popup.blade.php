@@ -56,11 +56,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const alertBox = document.getElementById('popupAlert');
     const codeArea = document.getElementById('codeDisplayArea');
 
-    // Show popup after 1.5 seconds if not closed in current session
+    // Trigger logic
     if (!localStorage.getItem('myfitness_popup_dismissed')) {
-        setTimeout(function() {
-            modal.classList.add('active');
-        }, 1500);
+        let triggerType = "{{ \App\Models\SiteSetting::get('popup_trigger_type', 'time') }}";
+        let triggerValue = parseFloat("{{ \App\Models\SiteSetting::get('popup_trigger_value', '1.5') }}");
+        
+        if (triggerType === 'time') {
+            setTimeout(function() {
+                modal.classList.add('active');
+            }, triggerValue * 1000);
+        } else if (triggerType === 'scroll') {
+            window.addEventListener('scroll', function scrollHandler() {
+                let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                if (scrollPercent >= triggerValue) {
+                    modal.classList.add('active');
+                    window.removeEventListener('scroll', scrollHandler);
+                }
+            });
+        }
     }
 
     closeBtn.addEventListener('click', function() {

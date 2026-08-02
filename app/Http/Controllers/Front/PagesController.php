@@ -19,7 +19,8 @@ class PagesController extends Controller
         }
         $blogs = Blog::with(['category'])->latest()->take(10)->get();
         $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('sort_order', 'asc')->get();
-        return view('front.home', compact('services','blogs','testimonials'));
+        $categories = Category::withCount('services')->get();
+        return view('front.home', compact('services','blogs','testimonials', 'categories'));
     }
 
     public function about()

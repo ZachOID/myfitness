@@ -10,6 +10,8 @@
     <!-- Workout Video Background Hero -->
     <x-front.hero-video />
 
+    <x-front.home-categories :categories="$categories" />
+
     @if($showServices == '1')
     <section class="premium-section">
         <div class="container">

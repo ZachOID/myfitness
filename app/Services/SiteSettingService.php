@@ -37,6 +37,8 @@ class SiteSettingService
             'ticker_text'         => SiteSetting::get('ticker_text', '🔥 EXCLUSIVE OFFER: Get 10% OFF your first booking! Code: FIRST10'),
 
             'show_popup'          => SiteSetting::get('show_popup', '1'),
+            'popup_trigger_type'  => SiteSetting::get('popup_trigger_type', 'time'),
+            'popup_trigger_value' => SiteSetting::get('popup_trigger_value', '1.5'),
             'popup_headline'      => SiteSetting::get('popup_headline', 'GET 10% OFF YOUR FIRST BOOKING!'),
             'popup_subheadline'   => SiteSetting::get('popup_subheadline', 'Enter your email below to unlock your exclusive 10% discount promo code.'),
             'popup_discount_code' => SiteSetting::get('popup_discount_code', 'FIRST10'),
