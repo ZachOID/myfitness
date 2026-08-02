@@ -48,3 +48,19 @@
         </div>
     </div>
 </section>
+
+<style>
+.blog-area {
+    background-color: var(--brand-bg) !important;
+}
+.blog-area .title, .blog-area p, .blog-area .section-para {
+    color: var(--brand-text) !important;
+}
+.single-blog {
+    background-color: var(--brand-card-bg) !important;
+    border-color: var(--brand-card-border) !important;
+}
+.single-blog .common-title-two a, .single-blog .common-para p, .single-blog .tags a {
+    color: var(--brand-text) !important;
+}
+</style>

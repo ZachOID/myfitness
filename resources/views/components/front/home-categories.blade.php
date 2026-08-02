@@ -8,7 +8,7 @@
     ];
 @endphp
 
-<section class="categories-section py-5 bg-dark">
+<section class="categories-section py-5">
     <div class="container mt-4 mb-4">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
             <div class="mb-3 mb-md-0">
@@ -59,7 +59,7 @@
 
 <style>
     .categories-section {
-        background-color: #000;
+        background-color: var(--brand-bg);
     }
     .category-card {
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);

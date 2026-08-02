@@ -36,7 +36,6 @@
         <x-front.why-choose-us />
     @endif
 
-    <x-front.start-as-partner />
 
     @if($showBlogs == '1')
         <x-front.blog-slider :blogs="$blogs"/>
