@@ -48,6 +48,15 @@ class SiteSettingService
             'show_testimonials'   => SiteSetting::get('show_testimonials', '1'),
             'show_blogs'          => SiteSetting::get('show_blogs', '1'),
             'show_faqs'           => SiteSetting::get('show_faqs', '1'),
+
+            'social_instagram'    => SiteSetting::get('social_instagram', ''),
+            'show_instagram'      => SiteSetting::get('show_instagram', '0'),
+            'social_twitter'      => SiteSetting::get('social_twitter', ''),
+            'show_twitter'        => SiteSetting::get('show_twitter', '0'),
+            'social_linkedin'     => SiteSetting::get('social_linkedin', ''),
+            'show_linkedin'       => SiteSetting::get('show_linkedin', '0'),
+            'social_whatsapp'     => SiteSetting::get('social_whatsapp', 'https://wa.me/971585858348'),
+            'show_whatsapp'       => SiteSetting::get('show_whatsapp', '1'),
         ];
     }
 

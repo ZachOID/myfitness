@@ -42,6 +42,9 @@
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="sections-tab" data-toggle="tab" href="#sections" role="tab" aria-controls="sections" aria-selected="false">Sections</a>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="socials-tab" data-toggle="tab" href="#socials" role="tab" aria-controls="socials" aria-selected="false">Socials</a>
+                            </li>
                         </ul>
 
                         <!-- Tab Panes -->
@@ -186,6 +189,41 @@
                                 <div class="custom-control custom-switch mb-3">
                                     <input type="checkbox" class="custom-control-input" id="swFaqs" name="show_faqs" value="1" {{ $settings['show_faqs'] == '1' ? 'checked' : '' }}>
                                     <label class="custom-control-label font-weight-bold" for="swFaqs">Compact FAQs Section</label>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Socials -->
+                            <div class="tab-pane fade" id="socials" role="tabpanel" aria-labelledby="socials-tab">
+                                <div class="form-group border p-3 rounded">
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" id="swInstagram" name="show_instagram" value="1" {{ $settings['show_instagram'] == '1' ? 'checked' : '' }}>
+                                        <label class="custom-control-label font-weight-bold" for="swInstagram">Enable Instagram</label>
+                                    </div>
+                                    <input type="text" name="social_instagram" class="form-control" placeholder="Instagram Profile URL" value="{{ $settings['social_instagram'] }}">
+                                </div>
+
+                                <div class="form-group border p-3 rounded">
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" id="swTwitter" name="show_twitter" value="1" {{ $settings['show_twitter'] == '1' ? 'checked' : '' }}>
+                                        <label class="custom-control-label font-weight-bold" for="swTwitter">Enable Twitter/X</label>
+                                    </div>
+                                    <input type="text" name="social_twitter" class="form-control" placeholder="Twitter Profile URL" value="{{ $settings['social_twitter'] }}">
+                                </div>
+
+                                <div class="form-group border p-3 rounded">
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" id="swLinkedin" name="show_linkedin" value="1" {{ $settings['show_linkedin'] == '1' ? 'checked' : '' }}>
+                                        <label class="custom-control-label font-weight-bold" for="swLinkedin">Enable LinkedIn</label>
+                                    </div>
+                                    <input type="text" name="social_linkedin" class="form-control" placeholder="LinkedIn Profile URL" value="{{ $settings['social_linkedin'] }}">
+                                </div>
+
+                                <div class="form-group border p-3 rounded">
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" id="swWhatsapp" name="show_whatsapp" value="1" {{ $settings['show_whatsapp'] == '1' ? 'checked' : '' }}>
+                                        <label class="custom-control-label font-weight-bold" for="swWhatsapp">Enable WhatsApp</label>
+                                    </div>
+                                    <input type="text" name="social_whatsapp" class="form-control" placeholder="WhatsApp Link (e.g. https://wa.me/971...)" value="{{ $settings['social_whatsapp'] }}">
                                 </div>
                             </div>
                         </div>

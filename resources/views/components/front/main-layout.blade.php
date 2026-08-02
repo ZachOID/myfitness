@@ -18,6 +18,17 @@
     <x-front.footer />
     <x-front.discount-popup />
 
+    @php
+        $settings = app(\App\Services\SiteSettingService::class)->getAllSettings();
+    @endphp
+
+    @if($settings['show_whatsapp'] == '1')
+    <!-- WhatsApp Floating Button -->
+    <a href="{{ $settings['social_whatsapp'] }}" target="_blank" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    @endif
+
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-migrate.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
