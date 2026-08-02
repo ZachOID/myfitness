@@ -67,6 +67,8 @@ class BlogController extends Controller
             'image'             => $image_path,
         ]);
 
+        \Illuminate\Support\Facades\Cache::forget('home_recent_blogs');
+
         return redirect()->route('admins.blogs.index')
             ->with('success', 'Blog Created Successfully');
     }
@@ -122,6 +124,8 @@ class BlogController extends Controller
             'image'             => $image_path,
         ]);
 
+        \Illuminate\Support\Facades\Cache::forget('home_recent_blogs');
+
         return redirect()->route('admins.blogs.index')
             ->with('success', 'Blog Updated Successfully');
     }
@@ -136,6 +140,8 @@ class BlogController extends Controller
         }
 
         $blog->delete();
+
+        \Illuminate\Support\Facades\Cache::forget('home_recent_blogs');
 
         return redirect()->route('admins.blogs.index')
             ->with('success', 'Blog Deleted Successfully');

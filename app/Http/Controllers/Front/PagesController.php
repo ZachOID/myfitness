@@ -17,7 +17,9 @@ class PagesController extends Controller
         if ($services->isEmpty()) {
             $services = Service::latest()->take(8)->get();
         }
-        $blogs = Blog::with(['category'])->latest()->take(10)->get();
+        $blogs = \Illuminate\Support\Facades\Cache::remember('home_recent_blogs', 60, function () {
+            return Blog::with(['category:id,name'])->select('id', 'slug', 'title', 'excerpt', 'image', 'created_at', 'category_id')->latest()->take(10)->get();
+        });
         $testimonials = \App\Models\Testimonial::where('is_active', true)->orderBy('sort_order', 'asc')->get();
         $categories = Category::withCount('services')->get();
         return view('front.home', compact('services','blogs','testimonials', 'categories'));
