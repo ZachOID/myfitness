@@ -9,7 +9,7 @@
 
         @if(isset($faqs) && $faqs->count() > 0)
             <div class="row justify-content-center faq-container">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <style>
                         .modern-faq-card {
                             background: #ffffff;
@@ -80,21 +80,25 @@
                         }
                     </style>
 
+                    <div class="row">
                     @foreach($faqs as $faq)
-                        <div class="modern-faq-card" onclick="toggleModernFaq(this)">
-                            <div class="modern-faq-header">
-                                <span>{{ $faq->question }}</span>
-                                <div class="modern-faq-icon">
-                                    <i class="fas fa-chevron-down"></i>
+                        <div class="col-md-6 mb-3">
+                            <div class="modern-faq-card h-100 mb-0" onclick="toggleModernFaq(this)">
+                                <div class="modern-faq-header">
+                                    <span>{{ $faq->question }}</span>
+                                    <div class="modern-faq-icon">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modern-faq-body">
-                                <div class="modern-faq-content">
-                                    {!! nl2br(e($faq->answer)) !!}
+                                <div class="modern-faq-body">
+                                    <div class="modern-faq-content">
+                                        {!! nl2br(e($faq->answer)) !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
+                    </div>
                 </div>
             </div>
         @else

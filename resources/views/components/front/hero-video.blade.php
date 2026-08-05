@@ -1,7 +1,11 @@
 @if($showHero == '1')
 <section class="premium-hero hero-section">
     <!-- Carousel Background -->
-    <div class="hero-carousel premium-hero-bg hero-carousel-wrapper" data-fade="{{ $heroFadeEffect == '1' ? 'true' : 'false' }}">
+@php
+    $heroVideoBrightness = \App\Models\SiteSetting::get('hero_video_brightness', '0.8');
+    $heroOverlayOpacity = \App\Models\SiteSetting::get('hero_overlay_opacity', '0.6');
+@endphp
+    <div class="hero-carousel premium-hero-bg hero-carousel-wrapper" data-fade="{{ $heroFadeEffect == '1' ? 'true' : 'false' }}" style="opacity: {{ $heroVideoBrightness }};">
         @foreach($heroSlides as $slide)
             <div class="hero-slide-item">
                 @if(($slide['type'] ?? 'image') == 'video')
@@ -16,7 +20,7 @@
     </div>
 
     <!-- Overlay Gradient -->
-    <div class="premium-hero-overlay"></div>
+    <div class="premium-hero-overlay" style="background: radial-gradient(circle at center, rgba(9, 9, 11, {{ max(0, $heroOverlayOpacity - 0.2) }}) 0%, rgba(9, 9, 11, {{ $heroOverlayOpacity }}) 100%);"></div>
 
     <!-- Hero Content -->
     <div class="premium-hero-content">
