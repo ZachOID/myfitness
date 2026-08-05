@@ -142,9 +142,7 @@
 .why-choose-section .section-header p {
     color: var(--brand-text-muted);
     font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .modern-feature-card {
