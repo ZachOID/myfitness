@@ -11,9 +11,9 @@
             <h2 style="font-size: 2.5rem; font-weight: 900; color: var(--brand-text); margin-top: 8px;">TRANSFORMATIONS & REVIEWS</h2>
         </div>
 
-        <div class="row g-4 mt-3">
+        <div class="testimonial-carousel mt-4">
             @foreach($items as $test)
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="px-3 pb-4 pt-2">
                     <div class="market-testimonial-card h-100 position-relative">
                         <!-- Large Quote Icon Background -->
                         <div class="quote-icon position-absolute top-0 end-0 mt-3 me-3 opacity-10">
@@ -26,7 +26,7 @@
                                  alt="{{ $test->name }}" 
                                  class="market-author-img rounded-circle shadow-sm"
                                  onError="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'">
-                            <div class="ms-3">
+                            <div style="margin-left: 24px;">
                                 <h5 class="mb-0 fw-bold text-light" style="color: var(--brand-text) !important;">{{ $test->name }}</h5>
                                 <small style="color: var(--brand-text-muted) !important;">{{ $test->role_location ?: 'Verified Client' }}</small>
                             </div>
@@ -96,3 +96,36 @@
         color: #ffc107 !important;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof $ !== 'undefined' && $.fn.slick) {
+            $('.testimonial-carousel').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 0,
+                speed: 8000,
+                cssEase: 'linear',
+                infinite: true,
+                arrows: false,
+                dots: false,
+                pauseOnHover: true,
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        }
+    });
+</script>

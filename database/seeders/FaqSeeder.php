@@ -13,35 +13,55 @@ class FaqSeeder extends Seeder
      */
     public function run(): void
     {
+        Faq::truncate();
+
         $faqs = [
             [
-                'question' => 'What is MyFitness?',
-                'answer' => 'MyFitness is a comprehensive fitness platform designed to help you achieve your health and wellness goals.',
+                'question' => 'Why choose My Fitness?',
+                'answer' => 'At My Fitness, we believe that fitness should be accessible to everyone. That\'s why we offer a range of products and services designed to fit any budget and lifestyle. Our team of friendly and knowledgeable experts is here to support you every step of the way, whether you\'re looking to lose weight, build muscle, or just feel better in your own skin.',
                 'sort_order' => 1,
                 'is_active' => true,
             ],
             [
-                'question' => 'How do I get started?',
-                'answer' => 'To get started, simply sign up for an account, choose a subscription plan that fits your needs, and begin exploring our wide range of fitness programs.',
+                'question' => 'Where can I train?',
+                'answer' => 'At My Fitness, you can select the place of training according to your own requirements and convenience, whether it\'s at your home, at the fitness center, or online.',
                 'sort_order' => 2,
                 'is_active' => true,
             ],
             [
-                'question' => 'What kinds of workouts are available?',
-                'answer' => 'We offer a variety of workouts including strength training, cardio, yoga, pilates, and high-intensity interval training (HIIT).',
+                'question' => 'What are the prices?',
+                'answer' => 'The prices depend on the service you choose, and they vary according to the place you choose to train in. You can visit our services page to see the prices for our services.',
                 'sort_order' => 3,
                 'is_active' => true,
             ],
             [
-                'question' => 'Can I cancel my subscription at any time?',
-                'answer' => 'Yes, you can cancel your subscription at any time from your account settings. Your access will continue until the end of your current billing period.',
+                'question' => 'How can I know my trainers details?',
+                'answer' => 'We will assign you a highly rated and best available trainer who will help you with your fitness needs. Once you get comfortable with the trainer, you can book the same trainer subject to availability.',
                 'sort_order' => 4,
                 'is_active' => true,
             ],
             [
-                'question' => 'Do you offer personal training?',
-                'answer' => 'Yes, we offer one-on-one personal training sessions with certified fitness professionals to help you reach your specific goals faster.',
+                'question' => 'Do I need a gym or any studio membership?',
+                'answer' => 'No, you don’t need a gym or studio membership.<br>My Fitness brings the workout, yoga, massage session, or any of our services directly to you—whether it\'s at your home, office, or a preferred location. All our services are designed to be done without the need for any external memberships. Our professionals come fully equipped with everything needed for your session.',
                 'sort_order' => 5,
+                'is_active' => true,
+            ],
+            [
+                'question' => 'What should I prepare for my personal training?',
+                'answer' => 'Make sure you have scheduled your time properly so that you are on time and can enjoy the full session. Wear comfortable clothes, bring a bottle of water, an exercise mat, and definitely a smile.',
+                'sort_order' => 6,
+                'is_active' => true,
+            ],
+            [
+                'question' => 'How can I book the same trainer again?',
+                'answer' => 'You can reach out to us via WhatsApp or email with the trainer\'s full name. We will get back to you with the trainer\'s available schedule.',
+                'sort_order' => 7,
+                'is_active' => true,
+            ],
+            [
+                'question' => 'Do I need any special equipment?',
+                'answer' => 'No, you don\'t need any special equipment. Just bring your comfortable sports clothes, a bottle of water, an exercise mat, and a smile.',
+                'sort_order' => 8,
                 'is_active' => true,
             ],
         ];

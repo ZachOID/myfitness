@@ -83,7 +83,7 @@
                     <div class="row">
                     @foreach($faqs as $faq)
                         <div class="col-md-6 mb-3">
-                            <div class="modern-faq-card h-100 mb-0" onclick="toggleModernFaq(this)">
+                            <div class="modern-faq-card mb-0" onclick="toggleModernFaq(this)">
                                 <div class="modern-faq-header">
                                     <span>{{ $faq->question }}</span>
                                     <div class="modern-faq-icon">

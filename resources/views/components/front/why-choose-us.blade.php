@@ -2,10 +2,21 @@
     <div class="container">
         <div class="text-center mb-5 section-header">
             <span class="subtitle">Elevate Your Lifestyle</span>
-            <h2>WHY CHOOSE MYFITNESS</h2>
-            <p>
-                We bring premium fitness and wellness experiences directly to your doorstep. Here is what sets us apart.
-            </p>
+            <h2>Why My Fitness?</h2>
+            <div style="max-width: 1100px; margin: 0 auto; text-align: left; color: var(--brand-text-muted); line-height: 1.7; font-size: 1.1rem;">
+                <p>
+                    At My Fitness.ae, we bring fitness, wellness, and recovery services right to your doorstep—making it easier than ever to stay active, healthy, and stress-free in Dubai and Abu Dhabi. Whether you're looking for personal training at home, yoga sessions, a relaxing massage, spors coaching or other fitness services, our platform connects you with certified fitness professionals, yoga instructors, and massage therapists ready to support your wellness goals.
+                </p>
+                <p style="margin-top: 15px;">
+                    We understand that life gets busy, which is why we offer on-demand services designed to fit your schedule. Whether you're a working professional, a busy parent, or simply someone who values flexibility, our expert team brings personalized workouts, guided yoga, and stress-relieving massages to your home, office, or even your favorite outdoor space.
+                </p>
+                <p style="margin-top: 15px;">
+                    With My Fitness, you can also book boxing, kickboxing, MMA coaching, running sessions, and more—all from top fitness professionals. Our easy-to-use platform allows you to schedule sessions, track progress, and stay motivated with just a few clicks.
+                </p>
+                <p style="margin-top: 15px;">
+                    Take charge of your health and wellness with My Fitness.ae—your go-to destination for fitness and wellness in UAE. Stay fit, feel great, and reach your goals—on your terms.
+                </p>
+            </div>
         </div>
 
         <div class="row g-4 justify-content-center">
@@ -13,11 +24,11 @@
                 <div class="modern-feature-card">
                     <div class="card-glow"></div>
                     <div class="icon-wrapper">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-money-bill-wave"></i>
                     </div>
-                    <h4>Train Anywhere</h4>
+                    <h4>Value For Money</h4>
                     <p>
-                        We deliver the workout to you. Your home, office, private gym, or local park in Dubai.
+                        We understand health and fitness are personal journeys. That’s why we offer a range of affordable fitness services to fit your goals. Our team of experts are here to support you in every step. Join us and reach your goals together!
                     </p>
                 </div>
             </div>
@@ -26,11 +37,11 @@
                 <div class="modern-feature-card">
                     <div class="card-glow"></div>
                     <div class="icon-wrapper">
-                        <i class="fas fa-certificate"></i>
+                        <i class="fas fa-tools"></i>
                     </div>
-                    <h4>Certified Coaches</h4>
+                    <h4>Service Commitment</h4>
                     <p>
-                        100% background-checked, internationally certified master trainers and specialists.
+                        We believe a healthy lifestyle is essential for happiness. That’s why we offer diverse fitness programs and classes with safe, well-maintained equipment and facilities. With us, you can confidently pursue your fitness journey toward achieving your personal goals.
                     </p>
                 </div>
             </div>
@@ -39,11 +50,11 @@
                 <div class="modern-feature-card">
                     <div class="card-glow"></div>
                     <div class="icon-wrapper">
-                        <i class="far fa-calendar-check"></i>
+                        <i class="fas fa-headset"></i>
                     </div>
-                    <h4>Flexible Schedule</h4>
+                    <h4>Dedicated Support</h4>
                     <p>
-                        Book sessions that fit your busy lifestyle, from early morning to late evening.
+                        Achieve your fitness goals with the help of our dedicated support team. Our friendly experts are just an email or WhatsApp message away, ready to assist you with any questions or concerns you may have.
                     </p>
                 </div>
             </div>
@@ -52,11 +63,11 @@
                 <div class="modern-feature-card">
                     <div class="card-glow"></div>
                     <div class="icon-wrapper">
-                        <i class="fas fa-tag"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h4>Transparent Pricing</h4>
+                    <h4>Secure Payment</h4>
                     <p>
-                        No hidden fees or gym memberships. Pay only for the sessions you book with clear packages.
+                        We have invested in industry-standard infrastructure that ensures your private information is never compromised. Our secure payment gateway gives you peace of mind and confidence in conducting online transactions.
                     </p>
                 </div>
             </div>
