@@ -1,4 +1,4 @@
-<section class="why-choose-section padding-top-60 padding-bottom-60">
+<section class="why-choose-section">
     <div class="container">
         <div class="text-center mb-5 section-header">
             <span class="subtitle">Elevate Your Lifestyle</span>
@@ -91,8 +91,8 @@
     color: var(--brand-text);
     position: relative;
     overflow: hidden;
-    padding: 100px 0;
-    margin: 40px 0;
+    padding: 20px 0;
+    margin: 0;
 }
 
 .why-choose-section::before {
