@@ -41,22 +41,26 @@ class PagesController extends Controller
 
     public function privacyPolicy()
     {
-        return view('front.privacy-policy');
+        $page = \App\Models\Page::where('slug', 'privacy-policy')->first();
+        return view('front.privacy-policy', compact('page'));
     }
 
     public function termsConditions()
     {
-        return view('front.terms-conditions');
+        $page = \App\Models\Page::where('slug', 'terms-conditions')->first();
+        return view('front.terms-conditions', compact('page'));
     }
 
     public function cookiePolicy()
     {
-        return view('front.cookie-policy');
+        $page = \App\Models\Page::where('slug', 'cookie-policy')->first();
+        return view('front.cookie-policy', compact('page'));
     }
 
     public function serviceDelivery()
     {
-        return view('front.service-delivery');
+        $page = \App\Models\Page::where('slug', 'service-delivery')->first();
+        return view('front.service-delivery', compact('page'));
     }
 
     public function login()

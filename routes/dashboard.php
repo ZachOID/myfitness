@@ -44,6 +44,10 @@ Route::group([
     // FAQs CMS
     Route::resource('faqs', FaqController::class)->except(['show']);
 
+    // Pages CMS
+    Route::resource('pages', \App\Http\Controllers\Dashboard\PageController::class)->except(['create', 'store', 'show', 'destroy']);
+    Route::get('pages/{page}/history', [\App\Http\Controllers\Dashboard\PageController::class, 'history'])->name('pages.history');
+
     Route::resource('categories', CategoryController::class);
     Route::resource('services', ServiceController::class);
     Route::get('services/service/search',[ServiceController::class , 'search'])

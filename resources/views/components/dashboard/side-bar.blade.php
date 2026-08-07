@@ -57,6 +57,14 @@
         </a>
     </li>
 
+    <!-- Pages CMS -->
+    <li class="nav-item {{ Route::is('admins.pages.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admins.pages.index') }}">
+            <i class="fas fa-file-alt text-info"></i>
+            <span> {{ __('Legal Pages') }} </span>
+        </a>
+    </li>
+
     <li class="nav-item {{ Route::is('admins.categories.*') ? 'active' : '' }}"
         style="{{ Route::is('admins.categories.*') ? 'background-color: darkslategrey;' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecategories"
