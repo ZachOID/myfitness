@@ -16,16 +16,36 @@
 
         <!-- Main Footer Content -->
         <div class="row g-5 mb-5">
-            <!-- Brand Info -->
-            <div class="col-lg-4 col-md-6 pe-lg-5">
+            <!-- Brand Info & Reach Us -->
+            <div class="col-lg-5 col-md-6 pe-lg-5">
                 <a href="/" class="d-inline-block text-decoration-none mb-4">
                     <div class="footer-brand m-0" style="font-size: 2.5rem;">
                         <span style="color: var(--color-text);">MY</span><span class="text-gradient">FITNESS</span>
                     </div>
                 </a>
-                <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-muted); margin-bottom: 40px;">
-                    Dubai's ultra-premium fitness platform. World-class personal trainers, yoga coaches, and therapists delivered directly to your doorstep.
-                </p>
+
+
+                <h5 class="footer-heading text-uppercase tracking-wider mb-3" style="color: #fff; font-size: 0.95rem;">Reach Us</h5>
+                <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-box-modern" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                            <i class="fas fa-map-marker-alt text-gradient"></i>
+                        </div>
+                        <span style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.4;">Compass Building,<br>Ras Al Khaimah, UAE</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-box-modern" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                            <i class="fas fa-phone-alt text-gradient"></i>
+                        </div>
+                        <a href="tel:+971585858348" style="color: var(--color-text-muted); text-decoration: none; font-size: 0.95rem; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-muted)'">+971 5858 58348</a>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-box-modern" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                            <i class="fas fa-envelope text-gradient"></i>
+                        </div>
+                        <a href="mailto:hello@myfitness.ae" style="color: var(--color-text-muted); text-decoration: none; font-size: 0.95rem; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-muted)'">hello@myfitness.ae</a>
+                    </div>
+                </div>
 
                 @php
                     $settings = app(\App\Services\SiteSettingService::class)->getAllSettings();
@@ -47,51 +67,25 @@
             </div>
 
             <!-- Quick Links -->
-            <div class="col-lg-2 col-md-6">
-                <h5 class="footer-heading text-uppercase tracking-wider" style="color: #fff; font-size: 0.95rem;">Explore</h5>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="footer-heading text-uppercase tracking-wider" style="color: #fff; font-size: 0.95rem;">Quick Links</h5>
                 <div class="d-flex flex-column gap-3 mt-4">
-                    <a href="/" class="footer-link m-0" style="font-size: 1.05rem;">Home</a>
+                    <a href="{{ route('front.about') }}" class="footer-link m-0" style="font-size: 1.05rem;">About Us</a>
                     <a href="{{ route('front.services') }}" class="footer-link m-0" style="font-size: 1.05rem;">Services</a>
-                    <a href="{{ route('front.about') }}" class="footer-link m-0" style="font-size: 1.05rem;">Our Story</a>
-                    <a href="{{ route('front.blogs') }}" class="footer-link m-0" style="font-size: 1.05rem;">Journal</a>
+                    <a href="{{ route('front.blogs') }}" class="footer-link m-0" style="font-size: 1.05rem;">Blog</a>
                     <a href="{{ route('front.contact') }}" class="footer-link m-0" style="font-size: 1.05rem;">Contact</a>
+                    <a href="{{ route('front.faq') }}" class="footer-link m-0" style="font-size: 1.05rem;">FAQ</a>
                 </div>
             </div>
 
             <!-- Legal & Support -->
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h5 class="footer-heading text-uppercase tracking-wider" style="color: #fff; font-size: 0.95rem;">Support</h5>
                 <div class="d-flex flex-column gap-3 mt-4">
-                    <a href="{{ route('front.faq') }}" class="footer-link m-0" style="font-size: 1.05rem;">Help Center</a>
                     <a href="{{ route('front.privacyPolicy') }}" class="footer-link m-0" style="font-size: 1.05rem;">Privacy Policy</a>
                     <a href="{{ route('front.termsConditions') }}" class="footer-link m-0" style="font-size: 1.05rem;">Terms of Service</a>
                     <a href="{{ route('front.cookiePolicy') }}" class="footer-link m-0" style="font-size: 1.05rem;">Cookies</a>
                     <a href="{{ route('front.serviceDelivery') }}" class="footer-link m-0" style="font-size: 1.05rem;">Service Delivery</a>
-                </div>
-            </div>
-
-            <!-- Contact -->
-            <div class="col-lg-3 col-md-6">
-                <h5 class="footer-heading text-uppercase tracking-wider" style="color: #fff; font-size: 0.95rem;">Reach Us</h5>
-                <div class="d-flex flex-column gap-4 mt-4">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="icon-box-modern">
-                            <i class="fas fa-map-marker-alt text-gradient fs-5"></i>
-                        </div>
-                        <span style="color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.4;">Compass Building,<br>Ras Al Khaimah, UAE</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="icon-box-modern">
-                            <i class="fas fa-phone-alt text-gradient fs-5"></i>
-                        </div>
-                        <a href="tel:+971585858348" style="color: var(--color-text-muted); text-decoration: none; font-size: 1.05rem; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-muted)'">+971 5858 58348</a>
-                    </div>
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="icon-box-modern">
-                            <i class="fas fa-envelope text-gradient fs-5"></i>
-                        </div>
-                        <a href="mailto:hello@myfitness.ae" style="color: var(--color-text-muted); text-decoration: none; font-size: 1.05rem; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-muted)'">hello@myfitness.ae</a>
-                    </div>
                 </div>
             </div>
         </div>

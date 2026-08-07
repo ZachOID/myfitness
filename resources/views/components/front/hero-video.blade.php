@@ -1,5 +1,5 @@
 @if($showHero == '1')
-<section class="premium-hero hero-section">
+<section class="premium-hero hero-section" style="padding-top: 120px;">
     <!-- Carousel Background -->
 @php
     $heroVideoBrightness = \App\Models\SiteSetting::get('hero_video_brightness', '0.8');

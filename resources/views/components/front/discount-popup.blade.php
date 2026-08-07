@@ -56,8 +56,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const alertBox = document.getElementById('popupAlert');
     const codeArea = document.getElementById('codeDisplayArea');
 
+    const dismissedAt = localStorage.getItem('myfitness_popup_dismissed_at');
+    let shouldShow = true;
+    
+    if (localStorage.getItem('myfitness_popup_dismissed') === '1') {
+        shouldShow = false;
+    } else if (dismissedAt) {
+        const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+        if (Date.now() - parseInt(dismissedAt) < oneHour) {
+            shouldShow = false;
+        }
+    }
+
     // Trigger logic
-    if (!localStorage.getItem('myfitness_popup_dismissed')) {
+    if (shouldShow) {
         let triggerType = "{{ \App\Models\SiteSetting::get('popup_trigger_type', 'time') }}";
         let triggerValue = parseFloat("{{ \App\Models\SiteSetting::get('popup_trigger_value', '1.5') }}");
         
@@ -76,13 +88,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    closeBtn.addEventListener('click', function() {
+    function dismissPopup() {
         modal.classList.remove('active');
-    });
+        localStorage.setItem('myfitness_popup_dismissed_at', Date.now().toString());
+    }
+
+    closeBtn.addEventListener('click', dismissPopup);
 
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
-            modal.classList.remove('active');
+            dismissPopup();
         }
     });
 

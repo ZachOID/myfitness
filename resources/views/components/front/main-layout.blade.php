@@ -9,14 +9,16 @@
 
 <x-front.preloader />
 
-<body class="premium-theme" style="zoom: 80%;">
+<body class="premium-theme">
     <x-front.moving-banner />
     <x-front.header />
     
     {{ $slot }}
     
     <x-front.footer />
-    <x-front.discount-popup />
+    @if(request()->routeIs('front.home'))
+        <x-front.discount-popup />
+    @endif
 
     @php
         $settings = app(\App\Services\SiteSettingService::class)->getAllSettings();
