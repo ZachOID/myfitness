@@ -25,7 +25,8 @@ class OrderController extends Controller
             'sessions_number'           => 'required|integer|min:1',
             'is_online'                 => 'required|boolean',
             'area_id'                   => 'nullable|required_if:is_online,0|exists:areas,id',
-            'dtime'                     => 'required|date_format:Y-m-d H:i|after:today'
+            'dtime'                     => 'required|date_format:Y-m-d H:i|after:today',
+            'promo_code'                => 'nullable|string'
         ]);
         $user = Auth::user();
 
@@ -49,6 +50,13 @@ class OrderController extends Controller
         
         Stripe::setApiKey(config('stripe.secret'));
 
+        $totalAmount = $service->price_after * $request->sessions_number;
+        $validPromoCode = \App\Models\SiteSetting::get('popup_discount_code', 'FIRST10');
+        
+        if ($request->promo_code && strtoupper(trim($request->promo_code)) === strtoupper(trim($validPromoCode))) {
+            $totalAmount = $totalAmount * 0.90; // Apply 10% discount
+        }
+
         $session = CheckoutSession::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
@@ -57,7 +65,7 @@ class OrderController extends Controller
                     'product_data' => [
                         'name' => $service->name,
                     ],
-                    'unit_amount' => $service->price_after * $request->sessions_number *100, 
+                    'unit_amount' => (int) round($totalAmount * 100), 
                 ],
                 'quantity' => 1,
             ]],

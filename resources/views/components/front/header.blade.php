@@ -12,7 +12,6 @@
             <a href="/" class="nav-link {{ Route::is('front.home') ? 'active' : '' }}">Home</a>
             <a href="{{ route('front.services') }}" class="nav-link {{ Route::is('front.services*') ? 'active' : '' }}">Services</a>
             <a href="{{ route('front.about') }}" class="nav-link {{ Route::is('front.about') ? 'active' : '' }}">About</a>
-            <a href="#" class="nav-link">Areas</a>
             <a href="{{ route('front.blogs') }}" class="nav-link {{ Route::is('front.blogs*') ? 'active' : '' }}">Blogs</a>
         </nav>
 
@@ -47,7 +46,6 @@
     <a href="/" class="nav-link {{ Route::is('front.home') ? 'text-gradient' : '' }}">Home</a>
     <a href="{{ route('front.services') }}" class="nav-link {{ Route::is('front.services*') ? 'text-gradient' : '' }}">Services</a>
     <a href="{{ route('front.about') }}" class="nav-link {{ Route::is('front.about') ? 'text-gradient' : '' }}">About</a>
-    <a href="#" class="nav-link">Areas</a>
     <a href="{{ route('front.blogs') }}" class="nav-link {{ Route::is('front.blogs*') ? 'text-gradient' : '' }}">Blogs</a>
     <hr style="border-color: var(--color-border); margin: 20px 0;">
     

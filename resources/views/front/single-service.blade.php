@@ -84,9 +84,14 @@
                                 </select>
                             </div>
 
-                            <div class="mb-5">
+                            <div class="mb-4">
                                 <label class="form-label" style="color: var(--brand-text); font-weight: 600; font-size: 0.95rem;">4. Preferred Date & Time</label>
                                 <input type="text" name="dtime" id="datetimePicker" class="form-control" required placeholder="Select date and time slot..." style="background: var(--brand-bg); border: 1px solid var(--brand-card-border); color: var(--brand-text); height: 52px; border-radius: 8px;">
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="form-label" style="color: var(--brand-text); font-weight: 600; font-size: 0.95rem;">5. Promo Code (Optional)</label>
+                                <input type="text" name="promo_code" class="form-control" placeholder="Enter discount code" style="background: var(--brand-bg); border: 1px solid var(--brand-card-border); color: var(--brand-text); height: 52px; border-radius: 8px; text-transform: uppercase;">
                             </div>
 
                             <button type="submit" class="btn-cult-primary w-100" style="height: 56px; font-size: 1.1rem !important;">
