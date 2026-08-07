@@ -194,6 +194,10 @@
                                     <input type="checkbox" class="custom-control-input" id="swTestimonials" name="show_testimonials" value="1" {{ $settings['show_testimonials'] == '1' ? 'checked' : '' }}>
                                     <label class="custom-control-label font-weight-bold" for="swTestimonials">Testimonials Section</label>
                                 </div>
+                                <div class="form-group pl-4 mb-4">
+                                    <label class="font-weight-bold text-muted" style="font-size: 0.9rem;">Testimonial Auto-Scroll Speed (Seconds)</label>
+                                    <input type="number" step="1" min="1" name="testimonial_scroll_speed" class="form-control form-control-sm" style="max-width: 150px;" value="{{ $settings['testimonial_scroll_speed'] ?? 15 }}">
+                                </div>
                                 <div class="custom-control custom-switch mb-3">
                                     <input type="checkbox" class="custom-control-input" id="swBlogs" name="show_blogs" value="1" {{ $settings['show_blogs'] == '1' ? 'checked' : '' }}>
                                     <label class="custom-control-label font-weight-bold" for="swBlogs">Blogs Slider Section</label>
